@@ -1,0 +1,24 @@
+{
+  "tunisie": {
+    "suicide_prevention": {
+      "number": "197",
+      "name": "lHakem",
+      "description": "Gratuit, 7j/7, 24h/24",
+      "website": "https://www.interieur.gov.tn/fr/"
+    },
+    "samu": {
+      "number": "190",
+      "name": "SAMU - Urgences médicales",
+      "website" : "https://santetunisie.rns.tn/fr/sante-en-tunisie/medecine-d-urgence/les-services-d-aide-medicale-urgente-samu"
+    },
+    "emergency": {
+      "number": "198",
+      "name": "Himeya"
+    },
+    "Medecin": {
+      "number": "71 744 215",
+      "name": "SOS Medecin - Ligne d'écoute",
+      "website": "https://sos-amitie.com"
+    }
+  }
+}

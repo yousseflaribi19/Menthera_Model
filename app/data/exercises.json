@@ -1,0 +1,878 @@
+{
+  "tristesse": {
+    "free": [
+      {
+        "id": 1,
+        "title": "Technique 5-4-3-2-1 (Grounding)",
+        "category": "Ancrage",
+        "description": "Exercice d'ancrage pour revenir au moment présent.",
+        "duration": "5 minutes",
+        "frequency": "2x par jour",
+        "difficulty": "Facile",
+        "instructions": ["Identifiez 5 choses que vous voyez", "4 que vous touchez", "3 que vous entendez", "2 que vous sentez", "1 que vous goûtez"]
+      },
+      {
+        "id": 2,
+        "title": "Journal de gratitude",
+        "category": "Pensée positive",
+        "description": "Notez 3 choses positives chaque soir.",
+        "duration": "10 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Facile",
+        "instructions": ["Prenez un cahier", "Notez 3 choses positives de la journée", "Relisez quand vous êtes bas"]
+      },
+      {
+        "id": 3,
+        "title": "Marche consciente",
+        "category": "Activité physique",
+        "description": "Marchez 15 minutes en pleine conscience.",
+        "duration": "15 minutes",
+        "frequency": "1x par jour",
+        "difficulty": "Facile",
+        "instructions": ["Sortez sans téléphone", "Concentrez-vous sur vos pas", "Observez votre environnement"]
+      }
+    ],
+    "premium": [
+      {
+        "id": 4,
+        "title": "Thérapie Cognitive Comportementale - Restructuration cognitive",
+        "category": "CBT Avancée",
+        "description": "Identifiez et modifiez les distorsions cognitives automatiques.",
+        "duration": "30 minutes",
+        "frequency": "3x par semaine",
+        "difficulty": "Avancé",
+        "technique": "CBT - Cognitive Restructuring",
+        "scientific_basis": "Beck's Cognitive Therapy",
+        "instructions": [
+          "Identifiez une pensée négative automatique (PNA)",
+          "Catégorisez la distorsion cognitive (tout ou rien, surgénéralisation, etc.)",
+          "Trouvez les preuves pour et contre cette pensée",
+          "Créez une pensée alternative plus équilibrée",
+          "Notez votre niveau d'émotion avant/après (0-10)",
+          "Pratiquez cette pensée alternative quotidiennement"
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Activation Comportementale (BA)",
+        "category": "Thérapie comportementale",
+        "description": "Planifiez et réalisez des activités plaisantes pour contrer l'évitement.",
+        "duration": "Variable",
+        "frequency": "Quotidien",
+        "difficulty": "Moyen",
+        "technique": "Behavioral Activation",
+        "scientific_basis": "Lewinsohn & Jacobson",
+        "instructions": [
+          "Listez 10 activités que vous aimiez avant",
+          "Évaluez chaque activité : Plaisir anticipé (0-10) et Difficulté (0-10)",
+          "Commencez par activités plaisir élevé/difficulté faible",
+          "Planifiez une activité par jour dans votre agenda",
+          "Après l'activité, notez le plaisir réel (0-10)",
+          "Augmentez progressivement la fréquence"
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Technique de défusion cognitive (ACT)",
+        "category": "ACT (Acceptance and Commitment Therapy)",
+        "description": "Apprenez à observer vos pensées sans les croire automatiquement.",
+        "duration": "15 minutes",
+        "frequency": "2x par jour",
+        "difficulty": "Avancé",
+        "technique": "Cognitive Defusion",
+        "scientific_basis": "Acceptance and Commitment Therapy (Hayes)",
+        "instructions": [
+          "Identifiez une pensée difficile",
+          "Dites-vous : 'J'ai la pensée que...' au lieu de croire directement",
+          "Visualisez cette pensée comme un nuage qui passe",
+          "Répétez la pensée 30 fois rapidement jusqu'à ce qu'elle perde son sens",
+          "Chantez cette pensée sur l'air d'une chanson enfantine",
+          "Observez : la pensée est toujours là, mais elle a moins de pouvoir"
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Thérapie des schémas - Identification des schémas précoces inadaptés",
+        "category": "Schema Therapy",
+        "description": "Identifiez vos schémas précoces qui maintiennent la dépression.",
+        "duration": "45 minutes",
+        "frequency": "1x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Schema Therapy",
+        "scientific_basis": "Jeffrey Young",
+        "instructions": [
+          "Identifiez vos schémas parmi les 18 schémas précoces inadaptés",
+          "Tracez l'origine du schéma dans votre enfance",
+          "Identifiez les situations actuelles qui activent ce schéma",
+          "Notez vos réactions typiques (évitement, surcompensation, capitulation)",
+          "Créez une carte de votre schéma avec déclencheurs et conséquences",
+          "Développez un 'Mode Adulte Sain' pour contrer le schéma"
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Méditation de pleine conscience MBCT",
+        "category": "Mindfulness-Based Cognitive Therapy",
+        "description": "Méditation guidée spécifique pour la dépression.",
+        "duration": "20 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Moyen",
+        "technique": "MBCT",
+        "scientific_basis": "Segal, Williams & Teasdale",
+        "instructions": [
+          "Asseyez-vous confortablement",
+          "Concentrez-vous sur votre respiration pendant 5 minutes",
+          "Scannez votre corps des pieds à la tête",
+          "Observez vos pensées sans jugement comme des nuages",
+          "Remarquez l'espace entre vous et vos pensées",
+          "Revenez à la respiration quand l'esprit s'évade"
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Écriture expressive structurée",
+        "category": "Expressive Writing",
+        "description": "Protocole Pennebaker d'écriture émotionnelle.",
+        "duration": "20 minutes",
+        "frequency": "4 jours consécutifs",
+        "difficulty": "Moyen",
+        "technique": "Pennebaker Writing",
+        "scientific_basis": "James Pennebaker",
+        "instructions": [
+          "Écrivez pendant 20 minutes sans arrêt",
+          "Explorez vos émotions les plus profondes",
+          "Connectez l'expérience présente à votre passé",
+          "N'autocensurez pas - personne ne lira",
+          "Jour 1-2 : Événement traumatique/difficile",
+          "Jour 3-4 : Sens et croissance post-traumatique"
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Exposition aux émotions (Emotion Exposure)",
+        "category": "Thérapie émotionnelle",
+        "description": "Affrontez progressivement les émotions évitées.",
+        "duration": "30 minutes",
+        "frequency": "2x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Emotion-Focused Therapy",
+        "scientific_basis": "Greenberg",
+        "instructions": [
+          "Identifiez une émotion que vous évitez (tristesse, colère)",
+          "Créez une hiérarchie d'exposition (situations de 1 à 10)",
+          "Commencez par niveau 2-3",
+          "Restez dans l'émotion sans la réprimer ni la fuir",
+          "Observez l'émotion atteindre son pic puis diminuer",
+          "Notez : durée de l'émotion, intensité max, leçons apprises"
+        ]
+      }
+    ]
+  },
+  "anxiete": {
+    "free": [
+      {
+        "id": 11,
+        "title": "Respiration 4-7-8",
+        "category": "Respiration",
+        "description": "Technique anti-anxiété rapide.",
+        "duration": "5 minutes",
+        "frequency": "3x par jour",
+        "difficulty": "Facile",
+        "instructions": ["Inspirez 4s", "Retenez 7s", "Expirez 8s", "Répétez 4 cycles"]
+      },
+      {
+        "id": 12,
+        "title": "Scan corporel",
+        "category": "Relaxation",
+        "description": "Relaxation progressive des muscles.",
+        "duration": "10 minutes",
+        "frequency": "1x par jour",
+        "difficulty": "Facile",
+        "instructions": ["Allongez-vous", "Détendez chaque muscle des pieds à la tête"]
+      },
+      {
+        "id": 13,
+        "title": "Ancrage 5-4-3-2-1",
+        "category": "Ancrage",
+        "description": "Stoppez les crises de panique.",
+        "duration": "5 minutes",
+        "frequency": "Au besoin",
+        "difficulty": "Facile",
+        "instructions": ["5 choses que vous voyez", "4 que vous touchez", "3 sons", "2 odeurs", "1 goût"]
+      }
+    ],
+    "premium": [
+      {
+        "id": 14,
+        "title": "Exposition intéroceptive",
+        "category": "Thérapie d'exposition",
+        "description": "Affrontez les sensations physiques d'anxiété pour désensibilisation.",
+        "duration": "20 minutes",
+        "frequency": "3x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Interoceptive Exposure",
+        "scientific_basis": "Barlow's Panic Control Treatment",
+        "instructions": [
+          "Identifiez vos sensations physiques redoutées (palpitations, vertiges)",
+          "Créez une hiérarchie de sensations (1-10)",
+          "Provoquez la sensation volontairement (hyperventilation pour vertiges)",
+          "Restez dans la sensation sans fuir pendant 1-2 minutes",
+          "Observez : la sensation atteint un pic puis diminue naturellement",
+          "Répétez jusqu'à habituation (anxiété < 3/10)",
+          "Passez à la sensation suivante"
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Restructuration cognitive des inquiétudes catastrophiques",
+        "category": "CBT Anxiété",
+        "description": "Challengez systématiquement les pensées catastrophiques.",
+        "duration": "30 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Avancé",
+        "technique": "Cognitive Restructuring for Worry",
+        "scientific_basis": "Beck & Clark",
+        "instructions": [
+          "Identifiez votre inquiétude catastrophique (ex: 'Je vais mourir d'une crise cardiaque')",
+          "Quelle est la probabilité réelle (0-100%) ?",
+          "Quelles preuves avez-vous pour/contre ?",
+          "Quel est le pire scénario réaliste (pas catastrophique) ?",
+          "Comment avez-vous géré des situations similaires ?",
+          "Créez une pensée alternative réaliste",
+          "Testez : vivez une journée en croyant la pensée alternative"
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Tolérance à l'incertitude (IUT)",
+        "category": "Intolerance of Uncertainty Therapy",
+        "description": "Augmentez votre capacité à tolérer l'incertitude.",
+        "duration": "Variable",
+        "frequency": "Quotidien",
+        "difficulty": "Avancé",
+        "technique": "Intolerance of Uncertainty Therapy",
+        "scientific_basis": "Dugas & Robichaud",
+        "instructions": [
+          "Identifiez vos comportements de recherche de certitude (vérifications, réassurance)",
+          "Créez une hiérarchie de situations incertaines (1-10)",
+          "Commencez par niveau 2-3 : acceptez l'incertitude sans vérifier",
+          "Résistez à l'envie de chercher des garanties",
+          "Notez votre anxiété toutes les 5 minutes pendant 30 minutes",
+          "Observez : l'anxiété diminue sans avoir obtenu de certitude",
+          "Pratiquez quotidiennement des 'exercices d'incertitude'"
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Thérapie métacognitive (MCT)",
+        "category": "Metacognitive Therapy",
+        "description": "Changez votre relation aux pensées anxieuses plutôt que leur contenu.",
+        "duration": "25 minutes",
+        "frequency": "3x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Metacognitive Therapy",
+        "scientific_basis": "Adrian Wells",
+        "instructions": [
+          "Identifiez vos croyances métacognitives (ex: 'M'inquiéter m'aide à me préparer')",
+          "Challengez ces croyances : Quelles preuves avez-vous ?",
+          "Pratiquez le 'détachement attentionnel' : observez vos pensées sans y répondre",
+          "Technique du report d'inquiétude : notez l'inquiétude, reportez à plus tard",
+          "Créez une 'période d'inquiétude' de 15 min/jour seulement",
+          "Hors de cette période : laissez passer les inquiétudes sans engagement"
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Respiration cohérente et variabilité cardiaque",
+        "category": "Biofeedback",
+        "description": "Entraînez votre système nerveux à la cohérence cardiaque.",
+        "duration": "10 minutes",
+        "frequency": "3x par jour",
+        "difficulty": "Moyen",
+        "technique": "Heart Rate Variability Training",
+        "scientific_basis": "HeartMath Institute",
+        "instructions": [
+          "Asseyez-vous confortablement, dos droit",
+          "Respirez à 6 cycles par minute (5s inspire, 5s expire)",
+          "Placez votre attention sur votre cœur",
+          "Imaginez respirer par le cœur",
+          "Cultivez une émotion positive (gratitude, amour)",
+          "Maintenez pendant 5 minutes minimum",
+          "Répétez 3x par jour pour effets cumulatifs"
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Exposition en imagination aux scénarios redoutés",
+        "category": "Imaginal Exposure",
+        "description": "Affrontez vos peurs en imagination de façon contrôlée.",
+        "duration": "30 minutes",
+        "frequency": "2x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Imaginal Exposure",
+        "scientific_basis": "Prolonged Exposure Therapy",
+        "instructions": [
+          "Choisissez un scénario redouté (mais non traumatique)",
+          "Écrivez un script détaillé du scénario (30 min de lecture)",
+          "Incluez tous les détails sensoriels et émotions",
+          "Enregistrez-vous en lisant le script",
+          "Écoutez l'enregistrement quotidiennement",
+          "Restez concentré sur le scénario sans distraction",
+          "Notez votre anxiété toutes les 5 minutes",
+          "Continuez jusqu'à habituation (anxiété < 3/10)"
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Mindfulness des pensées anxieuses",
+        "category": "MBSR Anxiété",
+        "description": "Observez vos pensées anxieuses avec bienveillance.",
+        "duration": "20 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Moyen",
+        "technique": "Mindfulness-Based Stress Reduction",
+        "scientific_basis": "Jon Kabat-Zinn",
+        "instructions": [
+          "Asseyez-vous en méditation",
+          "Laissez venir une pensée anxieuse",
+          "Observez-la comme un nuage dans le ciel",
+          "Nommez-la : 'Voici une pensée de danger'",
+          "Remarquez les sensations corporelles associées",
+          "Laissez la pensée partir sans la combattre",
+          "Revenez à la respiration",
+          "Répétez avec chaque pensée anxieuse"
+        ]
+      }
+    ]
+  },
+  "colere": {
+    "free": [
+      {
+        "id": 21,
+        "title": "Pause de 10 secondes",
+        "category": "Gestion immédiate",
+        "description": "Comptez jusqu'à 10 avant de réagir.",
+        "duration": "1 minute",
+        "frequency": "À chaque colère",
+        "difficulty": "Facile",
+        "instructions": ["Sentez la colère", "Comptez lentement jusqu'à 10", "Respirez profondément"]
+      },
+      {
+        "id": 22,
+        "title": "Exercice physique",
+        "category": "Libération physique",
+        "description": "Évacuez l'énergie négative.",
+        "duration": "15 minutes",
+        "frequency": "Au besoin",
+        "difficulty": "Facile",
+        "instructions": ["Jumping jacks", "Course sur place", "Pompes"]
+      },
+      {
+        "id": 23,
+        "title": "Journal de la colère",
+        "category": "Analyse",
+        "description": "Identifiez vos déclencheurs.",
+        "duration": "10 minutes",
+        "frequency": "Après chaque colère",
+        "difficulty": "Facile",
+        "instructions": ["Notez la situation", "Vos pensées", "Votre réaction corporelle"]
+      }
+    ],
+    "premium": [
+      {
+        "id": 24,
+        "title": "Technique de gestion de la colère par restructuration cognitive",
+        "category": "Anger Management CBT",
+        "description": "Identifiez et modifiez les pensées qui alimentent la colère.",
+        "duration": "30 minutes",
+        "frequency": "3x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Cognitive Restructuring for Anger",
+        "scientific_basis": "Novaco's Anger Management",
+        "instructions": [
+          "Identifiez la pensée déclencheuse (ex: 'Il me manque de respect')",
+          "Identifiez la distorsion cognitive (exagération, lecture de pensées)",
+          "Challengez : Est-ce vraiment vrai ? Quelle preuve objective ?",
+          "Considérez des explications alternatives",
+          "Créez une pensée plus équilibrée",
+          "Évaluez votre niveau de colère avant/après (0-10)",
+          "Pratiquez cette pensée alternative dans des situations réelles"
+        ]
+      },
+      {
+        "id": 25,
+        "title": "Relaxation musculaire progressive appliquée (RAM)",
+        "category": "Relaxation thérapeutique",
+        "description": "Version avancée de relaxation pour contrôle de la colère.",
+        "duration": "20 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Moyen",
+        "technique": "Applied Progressive Muscle Relaxation",
+        "scientific_basis": "Jacobson",
+        "instructions": [
+          "Identifiez vos zones de tension typiques lors de la colère",
+          "Tendez ces muscles pendant 5 secondes",
+          "Relâchez brusquement et observez la détente",
+          "Parcourez tout le corps : poings, bras, épaules, visage, jambes",
+          "Associez une image mentale de calme à la détente",
+          "Entraînez-vous à détendre en 30 secondes",
+          "Utilisez cette technique dès les premiers signes de colère"
+        ]
+      },
+      {
+        "id": 26,
+        "title": "Communication assertive structurée (DESC)",
+        "category": "Communication thérapeutique",
+        "description": "Exprimez vos besoins sans agressivité selon le modèle DESC.",
+        "duration": "Variable",
+        "frequency": "Au besoin",
+        "difficulty": "Moyen",
+        "technique": "DESC Script",
+        "scientific_basis": "Bower & Bower",
+        "instructions": [
+          "D (Describe) : Décrivez la situation objectivement sans jugement",
+          "E (Express) : Exprimez vos émotions avec des phrases en 'Je'",
+          "S (Specify) : Spécifiez précisément ce que vous voulez",
+          "C (Consequences) : Expliquez les conséquences positives si accepté",
+          "Pratiquez à l'écrit avant de communiquer",
+          "Restez calme et respectueux pendant la communication",
+          "Écoutez activement la réponse de l'autre"
+        ]
+      },
+      {
+        "id": 27,
+        "title": "Exposition à la frustration",
+        "category": "Thérapie d'exposition",
+        "description": "Augmentez votre tolérance à la frustration progressivement.",
+        "duration": "Variable",
+        "frequency": "3x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Frustration Tolerance Training",
+        "scientific_basis": "REBT - Ellis",
+        "instructions": [
+          "Créez une hiérarchie de situations frustrantes (1-10)",
+          "Commencez par niveau 2-3 : exposez-vous volontairement",
+          "Résistez à l'envie de réagir avec colère",
+          "Pratiquez l'auto-instruction : 'Je peux tolérer cela'",
+          "Notez votre niveau de colère toutes les 5 minutes",
+          "Restez dans la situation jusqu'à ce que la colère diminue",
+          "Récompensez-vous pour avoir toléré sans exploser"
+        ]
+      },
+      {
+        "id": 28,
+        "title": "Thérapie de pleine conscience pour la colère (MBCT-Anger)",
+        "category": "Mindfulness pour colère",
+        "description": "Observez la colère sans y réagir automatiquement.",
+        "duration": "20 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Avancé",
+        "technique": "Mindfulness-Based Anger Management",
+        "scientific_basis": "MBSR adapté",
+        "instructions": [
+          "Asseyez-vous en méditation",
+          "Évoquez mentalement une situation de colère récente",
+          "Observez la colère monter dans votre corps",
+          "Nommez les sensations : 'chaleur', 'tension', 'accélération'",
+          "Observez sans jugement, comme un scientifique",
+          "Remarquez l'espace entre le déclencheur et votre réaction",
+          "Pratiquez la 'pause sacrée' : respirer avant de réagir",
+          "Laissez la colère se dissiper naturellement"
+        ]
+      },
+      {
+        "id": 29,
+        "title": "Résolution de problèmes structurée",
+        "category": "Problem-Solving Therapy",
+        "description": "Remplacez la colère réactive par la résolution proactive.",
+        "duration": "30 minutes",
+        "frequency": "Hebdomadaire",
+        "difficulty": "Moyen",
+        "technique": "Problem-Solving Therapy",
+        "scientific_basis": "D'Zurilla & Goldfried",
+        "instructions": [
+          "Définissez clairement le problème qui cause votre colère",
+          "Brainstormez toutes les solutions possibles (sans censure)",
+          "Évaluez chaque solution : avantages/inconvénients",
+          "Choisissez la meilleure solution",
+          "Planifiez les étapes concrètes de mise en œuvre",
+          "Mettez en action",
+          "Évaluez le résultat et ajustez si nécessaire"
+        ]
+      },
+      {
+        "id": 30,
+        "title": "Techniques de distanciation émotionnelle",
+        "category": "ACT pour colère",
+        "description": "Créez de la distance entre vous et votre colère.",
+        "duration": "15 minutes",
+        "frequency": "2x par jour",
+        "difficulty": "Moyen",
+        "technique": "ACT Defusion",
+        "scientific_basis": "Acceptance and Commitment Therapy",
+        "instructions": [
+          "Identifiez votre pensée de colère",
+          "Reformulez : 'J'ai la pensée que cette personne est...'",
+          "Visualisez votre colère comme une vague qui monte et descend",
+          "Donnez un nom à votre colère : 'Voici Henri la Colère'",
+          "Remerciez votre colère pour sa tentative de protection",
+          "Choisissez consciemment comment réagir aligné avec vos valeurs",
+          "Agissez selon vos valeurs, pas selon la colère"
+        ]
+      }
+    ]
+  },
+  "peur": {
+    "free": [
+      {
+        "id": 31,
+        "title": "Exposition progressive",
+        "category": "Thérapie d'exposition",
+        "description": "Affrontez votre peur par petites étapes.",
+        "duration": "15 minutes",
+        "frequency": "2x par semaine",
+        "difficulty": "Moyen",
+        "instructions": ["Créez échelle 1-10", "Commencez niveau 1", "Restez jusqu'à habituation"]
+      },
+      {
+        "id": 32,
+        "title": "Visualisation positive",
+        "category": "Imagerie mentale",
+        "description": "Imaginez-vous gérer votre peur avec succès.",
+        "duration": "10 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Facile",
+        "instructions": ["Fermez les yeux", "Visualisez succès", "Ressentez la fierté"]
+      },
+      {
+        "id": 33,
+        "title": "Affirmations positives",
+        "category": "Auto-suggestion",
+        "description": "Répétez des phrases positives.",
+        "duration": "5 minutes",
+        "frequency": "2x par jour",
+        "difficulty": "Facile",
+        "instructions": ["Choisissez 3 affirmations", "Répétez à voix haute", "Croyez-les"]
+      }
+    ],
+    "premium": [
+      {
+        "id": 34,
+        "title": "Exposition graduée in vivo (Systematic Desensitization)",
+        "category": "Thérapie d'exposition comportementale",
+        "description": "Protocole structuré d'exposition aux situations phobiques.",
+        "duration": "45-60 minutes par session",
+        "frequency": "2-3x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Systematic Desensitization",
+        "scientific_basis": "Wolpe",
+        "instructions": [
+          "Créez une hiérarchie de peur de 10-15 items (0-100 SUDS)",
+          "Apprenez une technique de relaxation profonde",
+          "Commencez par item SUDS 20-30",
+          "Relaxez-vous complètement avant l'exposition",
+          "Exposez-vous à l'item jusqu'à SUDS < 25",
+          "Si SUDS monte trop : retirez-vous, relaxez, recommencez",
+          "Passez à l'item suivant seulement après maîtrise du précédent"
+        ]
+      },
+      {
+        "id": 35,
+        "title": "Restructuration cognitive des croyances de danger",
+        "category": "CBT pour phobies",
+        "description": "Challengez systématiquement les prédictions catastrophiques.",
+        "duration": "30 minutes",
+        "frequency": "3x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Cognitive Restructuring for Phobias",
+        "scientific_basis": "Clark & Beck",
+        "instructions": [
+          "Identifiez votre prédiction catastrophique spécifique",
+          "Quelle est la probabilité que cela arrive réellement (0-100%) ?",
+          "Combien de fois cela vous est-il arrivé dans le passé ?",
+          "Quelles preuves contredisent cette prédiction ?",
+          "Quel est le scénario le plus probable (vs catastrophique) ?",
+          "Testez votre prédiction : exposez-vous et observez ce qui se passe réellement",
+          "Comparez prédiction vs réalité : ajustez votre estimation de danger"
+        ]
+      },
+      {
+        "id": 36,
+        "title": "Exposition inhibitrice (Inhibitory Learning)",
+        "category": "Nouvelle génération d'exposition",
+        "description": "Créez des expériences qui violent vos attentes de danger.",
+        "duration": "Variable",
+        "frequency": "3x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Inhibitory Learning",
+        "scientific_basis": "Craske et al.",
+        "instructions": [
+          "Identifiez votre attente : 'Si X arrive, alors Y (catastrophe)'",
+          "Concevez une exposition qui viole cette attente",
+          "Exposez-vous de façon variée (lieux, moments, contextes différents)",
+          "Éliminez les comportements de sécurité",
+          "Restez assez longtemps pour constater que Y n'arrive pas",
+          "Approfondissez : 'Que se passe-t-il à la place de Y ?'",
+          "Répétez dans de multiples contextes pour généralisation"
+        ]
+      },
+      {
+        "id": 37,
+        "title": "Acceptance-Based Exposure",
+        "category": "ACT pour phobies",
+        "description": "Acceptez la peur plutôt que de la combattre pendant l'exposition.",
+        "duration": "30 minutes",
+        "frequency": "2x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Acceptance-Based Exposure",
+        "scientific_basis": "ACT + Exposure",
+        "instructions": [
+          "Clarifiez pourquoi affronter cette peur est important (valeurs)",
+          "Exposez-vous à la situation redoutée",
+          "Accueillez la peur : 'Bienvenue, peur. Je te fais de la place'",
+          "Observez les sensations sans essayer de les réduire",
+          "Pratiquez la défusion : 'J'ai peur' vs 'Je suis la peur'",
+          "Restez engagé dans l'activité malgré la peur",
+          "Évaluez : avez-vous agi selon vos valeurs malgré la peur ?"
+        ]
+      },
+      {
+        "id": 38,
+        "title": "Exposition par réalité virtuelle (VRET)",
+        "category": "Technologie thérapeutique",
+        "description": "Utilisez la réalité virtuelle pour exposition contrôlée.",
+        "duration": "20-30 minutes",
+        "frequency": "2x par semaine",
+        "difficulty": "Avancé",
+        "technique": "Virtual Reality Exposure Therapy",
+        "scientific_basis": "Rothbaum et al.",
+        "instructions": [
+          "Utilisez une app VR pour votre phobie spécifique",
+          "Commencez par niveau de difficulté faible",
+          "Immergez-vous complètement dans l'environnement virtuel",
+          "Restez exposé jusqu'à réduction de 50% de l'anxiété",
+          "Pratiquez des techniques de coping pendant l'exposition",
+          "Augmentez progressivement le niveau de difficulté",
+          "Transférez les acquis vers exposition in vivo"
+        ]
+      },
+      {
+        "id": 39,
+        "title": "Imagerie mentale de maîtrise",
+        "category": "Imagery Rescripting",
+        "description": "Réécrivez mentalement vos expériences de peur en scénarios de maîtrise.",
+        "duration": "25 minutes",
+        "frequency": "3x par semaine",
+        "difficulty": "Moyen",
+        "technique": "Imagery Rescripting",
+        "scientific_basis": "Arntz & Weertman",
+        "instructions": [
+          "Identifiez un souvenir lié à votre peur",
+          "Revivez le souvenir en détail (phase 1)",
+          "Identifiez vos besoins non satisfaits dans ce souvenir",
+          "Réécrivez le scénario : vous gérez la situation avec confiance",
+          "Introduisez des ressources (adulte actuel, figure protectrice)",
+          "Vivez intensément la nouvelle version",
+          "Pratiquez cette nouvelle version quotidiennement"
+        ]
+      },
+      {
+        "id": 40,
+        "title": "Training de tolérance à l'anxiété",
+        "category": "Anxiety Tolerance",
+        "description": "Augmentez votre capacité à tolérer l'inconfort anxieux.",
+        "duration": "Variable",
+        "frequency": "Quotidien",
+        "difficulty": "Avancé",
+        "technique": "Distress Tolerance",
+        "scientific_basis": "DBT Skills",
+        "instructions": [
+          "Exposez-vous volontairement à un inconfort anxieux modéré",
+          "Pratiquez des techniques de tolérance : auto-apaisement sensoriel",
+          "ACCEPTS : Activities, Contributing, Comparisons, Emotions, Pushing away, Thoughts, Sensations",
+          "Restez dans l'inconfort sans fuir ni utiliser comportements d'évitement",
+          "Observez : 'Je peux tolérer cet inconfort'",
+          "Notez votre durée de tolérance : augmentez progressivement",
+          "Récompensez-vous pour avoir toléré"
+        ]
+      }
+    ]
+  },
+  "neutre": {
+    "free": [
+      {
+        "id": 41,
+        "title": "Méditation pleine conscience",
+        "category": "Méditation",
+        "description": "10 minutes de méditation quotidienne.",
+        "duration": "10 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Facile",
+        "instructions": ["Asseyez-vous", "Concentrez-vous sur respiration", "Observez pensées sans jugement"]
+      },
+      {
+        "id": 42,
+        "title": "Routine matinale",
+        "category": "Hygiène de vie",
+        "description": "Créez un rituel matinal positif.",
+        "duration": "30 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Facile",
+        "instructions": ["Réveil fixe", "Eau", "Étirements", "Petit déjeuner sain"]
+      },
+      {
+        "id": 43,
+        "title": "Déconnexion digitale",
+        "category": "Hygiène digitale",
+        "description": "1 heure par jour sans écrans.",
+        "duration": "60 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Moyen",
+        "instructions": ["Éteignez appareils", "Activité réelle", "Reconnexion sensorielle"]
+      }
+    ],
+    "premium": [
+      {
+        "id": 44,
+        "title": "Méditation MBSR complète (8 semaines)",
+        "category": "Programme structuré",
+        "description": "Programme complet de réduction du stress basé sur la pleine conscience.",
+        "duration": "45 min/jour",
+        "frequency": "Quotidien pendant 8 semaines",
+        "difficulty": "Avancé",
+        "technique": "Mindfulness-Based Stress Reduction",
+        "scientific_basis": "Jon Kabat-Zinn",
+        "instructions": [
+          "Semaine 1-2 : Body Scan quotidien (45 min)",
+          "Semaine 3-4 : Yoga doux + méditation assise (45 min)",
+          "Semaine 5-6 : Méditation assise prolongée (45 min)",
+          "Semaine 7 : Journée de pratique intensive (6h)",
+          "Semaine 8 : Intégration dans la vie quotidienne",
+          "Pratique informelle : pleine conscience dans activités quotidiennes",
+          "Journal quotidien de pratique"
+        ]
+      },
+      {
+        "id": 45,
+        "title": "Thérapie d'acceptation et d'engagement (ACT) - Valeurs",
+        "category": "ACT",
+        "description": "Clarifiez vos valeurs et vivez une vie engagée.",
+        "duration": "60 minutes",
+        "frequency": "Hebdomadaire",
+        "difficulty": "Avancé",
+        "technique": "Values Clarification",
+        "scientific_basis": "ACT - Hayes",
+        "instructions": [
+          "Identifiez vos domaines de vie : famille, travail, loisirs, santé, etc.",
+          "Pour chaque domaine : Qu'est-ce qui est vraiment important pour vous ?",
+          "Distinguez valeurs (direction) vs objectifs (destination)",
+          "Évaluez votre cohérence actuelle avec vos valeurs (0-10)",
+          "Identifiez les obstacles (pensées, émotions, situations)",
+          "Définissez des actions engagées alignées avec vos valeurs",
+          "Pratiquez une action engagée quotidienne malgré l'inconfort"
+        ]
+      },
+      {
+        "id": 46,
+        "title": "Psychologie positive - Interventions de bien-être",
+        "category": "Positive Psychology",
+        "description": "Exercices scientifiques pour augmenter le bien-être durable.",
+        "duration": "20 min/jour",
+        "frequency": "Quotidien",
+        "difficulty": "Moyen",
+        "technique": "Positive Psychology Interventions",
+        "scientific_basis": "Seligman - PERMA",
+        "instructions": [
+          "Exercice des 3 bonnes choses : notez 3 événements positifs + pourquoi",
+          "Visite de gratitude : écrivez lettre à quelqu'un, lisez-la en personne",
+          "Utilisation des forces : identifiez vos forces signature (VIA test)",
+          "Utilisez une force de façon nouvelle chaque jour",
+          "Actes de gentillesse : 5 actes altruistes par semaine",
+          "Savourage : prenez 10 minutes pour savourer une expérience positive",
+          "Visualisation du meilleur soi possible dans 5 ans"
+        ]
+      },
+      {
+        "id": 47,
+        "title": "Cohérence cardiaque avancée avec biofeedback",
+        "category": "Biofeedback",
+        "description": "Entraînez votre variabilité cardiaque pour régulation émotionnelle.",
+        "duration": "15 minutes",
+        "frequency": "3x par jour",
+        "difficulty": "Avancé",
+        "technique": "HRV Biofeedback",
+        "scientific_basis": "HeartMath",
+        "instructions": [
+          "Utilisez une app de biofeedback de cohérence cardiaque",
+          "Respirez à 0.1 Hz (6 cycles/minute : 5s inspire, 5s expire)",
+          "Focalisez sur la région du cœur",
+          "Cultivez une émotion positive (gratitude, compassion)",
+          "Observez votre courbe de variabilité cardiaque en temps réel",
+          "Visez un état de haute cohérence (courbe sinusoïdale régulière)",
+          "Pratiquez 5 min matin, midi, soir pour effets cumulatifs"
+        ]
+      },
+      {
+        "id": 48,
+        "title": "Compassion Self-Therapy (MSC)",
+        "category": "Mindful Self-Compassion",
+        "description": "Développez l'auto-compassion comme antidote à l'auto-critique.",
+        "duration": "20 minutes",
+        "frequency": "Quotidien",
+        "difficulty": "Moyen",
+        "technique": "Mindful Self-Compassion",
+        "scientific_basis": "Neff & Germer",
+        "instructions": [
+          "Mindfulness : 'Ce moment est difficile' (reconnaissance souffrance)",
+          "Humanité commune : 'La souffrance fait partie de l'expérience humaine'",
+          "Auto-bienveillance : 'Puis-je être gentil avec moi-même'",
+          "Geste d'auto-compassion : main sur cœur, auto-câlin",
+          "Phrases d'auto-compassion : 'Que je sois en sécurité, heureux, en bonne santé'",
+          "Lettre d'auto-compassion : écrivez-vous comme à un ami cher",
+          "Pratique quotidienne de la pause d'auto-compassion"
+        ]
+      },
+      {
+        "id": 49,
+        "title": "Training autogène de Schultz",
+        "category": "Relaxation profonde",
+        "description": "Méthode de relaxation par auto-suggestion physiologique.",
+        "duration": "20 minutes",
+        "frequency": "2x par jour",
+        "difficulty": "Avancé",
+        "technique": "Autogenic Training",
+        "scientific_basis": "Johannes Schultz",
+        "instructions": [
+          "Cycle inférieur (6 semaines) :",
+          "Semaine 1 : Pesanteur ('Mon bras droit est lourd')",
+          "Semaine 2 : Chaleur ('Mon bras droit est chaud')",
+          "Semaine 3 : Cœur ('Mon cœur bat calme et régulier')",
+          "Semaine 4 : Respiration ('Ma respiration est calme')",
+          "Semaine 5 : Plexus solaire ('Mon plexus est chaud')",
+          "Semaine 6 : Front ('Mon front est frais')",
+          "Pratiquez 3x par jour pendant 5 minutes minimum"
+        ]
+      },
+      {
+        "id": 50,
+        "title": "Optimisation du sommeil (CBT-I)",
+        "category": "Thérapie cognitive du sommeil",
+        "description": "Protocole structuré pour traiter l'insomnie sans médicaments.",
+        "duration": "Variable",
+        "frequency": "Quotidien",
+        "difficulty": "Moyen",
+        "technique": "Cognitive Behavioral Therapy for Insomnia",
+        "scientific_basis": "Morin & Espie",
+        "instructions": [
+          "Restriction de sommeil : limitez temps au lit = temps dormi réel",
+          "Contrôle du stimulus : lit uniquement pour sommeil (pas TV, téléphone)",
+          "Si pas endormi en 20 min : sortez du lit, activité calme",
+          "Levez-vous à heure fixe (même week-end)",
+          "Pas de sieste pendant journée",
+          "Hygiène sommeil : chambre fraîche, sombre, calme",
+          "Restructuration cognitive : challengez pensées anxieuses sur sommeil"
+        ]
+      }
+    ]
+  }
+}
