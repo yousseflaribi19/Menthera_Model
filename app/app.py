@@ -1,7 +1,7 @@
 # app/app.py
 """
 Application Flask principale - Menthera
-Psychologue virtuel 100% GRATUIT (sans GPT)
+Psychologue virtuel
 """
 
 from flask import Flask, request, jsonify
@@ -9,6 +9,7 @@ from flask_cors import CORS
 from datetime import datetime
 import os
 import sys
+import traceback
 
 # Ajouter chemin racine
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -19,6 +20,7 @@ from app.services.speech_service import SpeechToTextService
 from app.services.danger_detector import DangerDetector
 from app.services.therapist_service_free import TherapistServiceFree
 from app.services.treatment_service import TreatmentService
+
 
 def create_app():
     """Factory pour créer l'application"""
@@ -64,49 +66,128 @@ def create_app():
     @app.route('/api/chat/process-voice', methods=['POST'])
     def process_voice():
         """Endpoint principal : analyse vocal"""
-        
-        if 'audio' not in request.files:
-            return jsonify({'error': 'Pas de fichier audio'}), 400
-        
-        audio_file = request.files['audio']
-        user_id = request.form.get('user_id', 1)
-        session_id = request.form.get('session_id', None)
-        
-        # Sauvegarder temporairement
-        temp_path = f'temp_{user_id}_{datetime.now().timestamp()}.wav'
-        audio_file.save(temp_path)
+        temp_path = None
         
         try:
+            # LOGS DE DEBUG COMPLETS
+            print("\n" + "="*60)
+            print("REQUÊTE REÇUE - DÉTAILS COMPLETS")
+            print("="*60)
+            print(f"✓ Files reçus: {list(request.files.keys())}")
+            print(f"✓ Form data: {dict(request.form)}")
+            print(f"✓ Content-Type: {request.content_type}")
+            print("="*60 + "\n")
+            
+            # Validation fichier audio
+            if 'audio' not in request.files:
+                print("❌ ERREUR: Clé 'audio' manquante dans request.files")
+                print(f"   Clés disponibles: {list(request.files.keys())}")
+                return jsonify({'error': 'Pas de fichier audio', 'files_received': list(request.files.keys())}), 400
+            
+            audio_file = request.files['audio']
+            
+            # Vérifier que le fichier n'est pas vide
+            if audio_file.filename == '':
+                print("❌ ERREUR: Nom de fichier vide")
+                return jsonify({'error': 'Fichier audio vide'}), 400
+            
+            print(f"✅ Fichier audio: {audio_file.filename}")
+            
+            # Validation user_id
+            user_id_str = request.form.get('user_id', None)
+            session_id_str = request.form.get('session_id', None)
+            
+            print(f"✅ user_id (str): '{user_id_str}' (type: {type(user_id_str)})")
+            print(f"✅ session_id (str): '{session_id_str}'")
+            
+            if not user_id_str:
+                print("❌ ERREUR: user_id manquant")
+                return jsonify({'error': 'user_id requis'}), 400
+            
+            # Conversion user_id en int
+            try:
+                user_id = int(user_id_str)
+                print(f"✅ user_id converti: {user_id} (int)")
+            except ValueError as e:
+                print(f"❌ ERREUR: Conversion user_id impossible: {e}")
+                return jsonify({'error': 'user_id doit être un entier'}), 400
+            
+            # Sauvegarder temporairement
+            temp_path = f'temp_{user_id}_{datetime.now().timestamp()}.wav'
+            audio_file.save(temp_path)
+            print(f"✅ Fichier sauvegardé: {temp_path}")
+            
+            # Vérifier que le fichier existe
+            if not os.path.exists(temp_path):
+                print(f"❌ ERREUR: Fichier non créé: {temp_path}")
+                return jsonify({'error': 'Erreur sauvegarde fichier'}), 500
+            
+            file_size = os.path.getsize(temp_path)
+            print(f"✅ Taille fichier sur disque: {file_size} bytes")
+            
+            if file_size == 0:
+                print("❌ ERREUR: Fichier vide sur disque")
+                os.remove(temp_path)
+                return jsonify({'error': 'Fichier audio vide'}), 400
+            
             # 1. ANALYSE ÉMOTION
+            print("\nAnalyse émotion...")
             emotion_result = emotion_service.analyze_emotion(temp_path)
             emotion = emotion_result['emotion']
             confidence = emotion_result['confidence']
+            print(f"✅ Émotion: {emotion} (confiance: {confidence:.2%})")
             
             # 2. SPEECH-TO-TEXT
+            print("\n Speech-to-text...")
             stt_result = speech_service.audio_to_text(temp_path)
             
             if not stt_result['success']:
-                return jsonify({'error': 'Audio incompréhensible'}), 400
+                print(f"❌ ERREUR STT: {stt_result.get('error', 'Inconnu')}")
+                if temp_path and os.path.exists(temp_path):
+                    os.remove(temp_path)
+                return jsonify({'error': 'Audio incompréhensible', 'stt_error': stt_result.get('error')}), 400
             
             transcription = stt_result['text']
+            print(f"✅ Transcription: {transcription[:100]}...")
             
             # 3. DÉTECTION DANGER
+            print("\n⚠️  Analyse danger...")
             danger_analysis = danger_detector.analyze_text(transcription, emotion, confidence)
+            print(f"✅ Score danger: {danger_analysis['danger_score']}/10")
             
-            # 4. User
-            user = User.query.get(user_id)
+            # 4. USER
+            print(f"\n👤 Recherche utilisateur {user_id}...")
+            user = db.session.get(User, user_id)
+            
             if not user:
-                user = User(email=f'user_{user_id}@menthera.app', name=f'User {user_id}')
+                print(f"✅ Création nouvel utilisateur {user_id}")
+                user = User(id=user_id, email=f'user_{user_id}@menthera.app', name=f'User {user_id}')
                 db.session.add(user)
                 db.session.commit()
+            else:
+                print(f"✅ Utilisateur trouvé: {user.email}")
             
             is_premium = user.is_premium
             limits = user.get_plan_limits()
+            print(f"✅ Premium: {is_premium}")
             
-            # 5. Session
-            if session_id:
-                session = Session.query.get(session_id)
-            else:
+            # 5. SESSION
+            print(f"\n📋 Gestion session...")
+            session = None
+            
+            if session_id_str:
+                try:
+                    session_id_int = int(session_id_str)
+                    session = db.session.get(Session, session_id_int)
+                    if session:
+                        print(f"✅ Session trouvée: {session_id_int}")
+                    else:
+                        print(f"⚠️  Session {session_id_int} introuvable")
+                except (ValueError, TypeError) as e:
+                    print(f"⚠️  session_id invalide: {e}")
+            
+            if not session:
+                print("✅ Création nouvelle session")
                 session = Session(
                     user_id=user_id,
                     emotion_detected=emotion,
@@ -116,8 +197,9 @@ def create_app():
                 )
                 db.session.add(session)
                 db.session.commit()
+                print(f"✅ Session créée: ID={session.id}")
             
-            # 6. Historique
+            # 6. HISTORIQUE
             conversation_history = session.conversation_history or []
             conversation_history.append({
                 'role': 'user',
@@ -127,7 +209,8 @@ def create_app():
             })
             
             # 7. URGENCE ?
-            if danger_analysis['action'] == 'URGENCE_IMMEDIATE':
+            if danger_analysis.get('action') == 'URGENCE_IMMEDIATE':
+                print("\n🚨 URGENCE DÉTECTÉE")
                 emergency_response = danger_detector.get_emergency_response(danger_analysis)
                 
                 conversation_history.append({
@@ -141,7 +224,7 @@ def create_app():
                 session.danger_level = danger_analysis['danger_score']
                 db.session.commit()
                 
-                if os.path.exists(temp_path):
+                if temp_path and os.path.exists(temp_path):
                     os.remove(temp_path)
                 
                 return jsonify({
@@ -154,6 +237,7 @@ def create_app():
                 })
             
             # 8. RÉPONSE THÉRAPEUTIQUE
+            print("\n💬 Génération réponse thérapeutique...")
             conversation_count = len(conversation_history) // 2
             
             therapist_response = therapist_service.generate_response(
@@ -162,6 +246,7 @@ def create_app():
                 transcription,
                 is_premium
             )
+            print(f"✅ Réponse générée: {therapist_response[:100]}...")
             
             conversation_history.append({
                 'role': 'assistant',
@@ -171,14 +256,20 @@ def create_app():
             
             session.conversation_history = conversation_history
             session.transcription = transcription
+            session.emotion_detected = emotion
+            session.confidence = confidence
+            session.danger_level = danger_analysis['danger_score']
             db.session.commit()
             
             # 9. QUESTIONS
             questions = therapist_service.generate_questions(emotion, conversation_count, is_premium)
             
-            # 10. Nettoyer
-            if os.path.exists(temp_path):
+            # 10. NETTOYER
+            if temp_path and os.path.exists(temp_path):
                 os.remove(temp_path)
+                print(f"✅ Fichier temporaire supprimé")
+            
+            print("\n✅ SUCCÈS - Réponse envoyée\n")
             
             return jsonify({
                 'success': True,
@@ -194,47 +285,63 @@ def create_app():
             })
         
         except Exception as e:
-            if os.path.exists(temp_path):
+            print(f"\n❌ EXCEPTION DANS process_voice:")
+            print(f"   Type: {type(e).__name__}")
+            print(f"   Message: {str(e)}")
+            traceback.print_exc()
+            print("\n")
+            
+            if temp_path and os.path.exists(temp_path):
                 os.remove(temp_path)
-            return jsonify({'error': str(e)}), 500
+            
+            return jsonify({'error': str(e), 'type': type(e).__name__}), 500
     
     @app.route('/api/chat/end-session', methods=['POST'])
     def end_session():
         """Termine session + génère plan traitement"""
         
-        data = request.json
-        session_id = data.get('session_id')
+        try:
+            data = request.json
+            session_id = data.get('session_id')
+            
+            if not session_id:
+                return jsonify({'error': 'session_id requis'}), 400
+            
+            session = db.session.get(Session, session_id)
+            if not session:
+                return jsonify({'error': 'Session introuvable'}), 404
+            
+            user = db.session.get(User, session.user_id)
+            if not user:
+                return jsonify({'error': 'Utilisateur introuvable'}), 404
+            
+            is_premium = user.is_premium
+            
+            # Plan de traitement
+            treatment_plan = treatment_service.generate_treatment_plan(
+                session.emotion_detected,
+                session.danger_level,
+                is_premium
+            )
+            
+            # Résumé
+            summary = therapist_service.get_summary(session.emotion_detected, session.danger_level)
+            
+            session.ended_at = datetime.utcnow()
+            session.treatment_plan = treatment_plan
+            session.diagnosis = summary
+            db.session.commit()
+            
+            return jsonify({
+                'success': True,
+                'session_summary': session.to_dict(),
+                'treatment_plan': treatment_plan
+            })
         
-        if not session_id:
-            return jsonify({'error': 'session_id requis'}), 400
-        
-        session = Session.query.get(session_id)
-        if not session:
-            return jsonify({'error': 'Session introuvable'}), 404
-        
-        user = User.query.get(session.user_id)
-        is_premium = user.is_premium
-        
-        # Plan de traitement
-        treatment_plan = treatment_service.generate_treatment_plan(
-            session.emotion_detected,
-            session.danger_level,
-            is_premium
-        )
-        
-        # Résumé
-        summary = therapist_service.get_summary(session.emotion_detected, session.danger_level)
-        
-        session.ended_at = datetime.utcnow()
-        session.treatment_plan = treatment_plan
-        session.diagnosis = summary
-        db.session.commit()
-        
-        return jsonify({
-            'success': True,
-            'session_summary': session.to_dict(),
-            'treatment_plan': treatment_plan
-        })
+        except Exception as e:
+            print(f"❌ ERREUR dans end_session: {e}")
+            traceback.print_exc()
+            return jsonify({'error': str(e)}), 500
     
     return app
 

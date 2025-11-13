@@ -1,0 +1,332 @@
+{
+  "tristesse": {
+    "phase_1_initial": [
+      "Je comprends que vous traversez un moment de tristesse. C'est une émotion importante qui mérite d'être écoutée et respectée.",
+      "Merci de me confier ce que vous ressentez. Votre tristesse est valide et compréhensible.",
+      "La tristesse que vous exprimez montre une grande sensibilité. C'est une force, pas une faiblesse.",
+      "Je reconnais la profondeur de ce que vous ressentez. Vous n'êtes pas seul(e) dans cette expérience.",
+      "Votre tristesse me parle de quelque chose d'important pour vous. Parlons-en ensemble.",
+      "Je perçois la peine dans votre voix. C'est courageux de la reconnaître et d'en parler.",
+      "Ce que vous ressentez compte et mérite un espace sûr pour être exprimé.",
+      "Il est normal d'être touché ainsi par ce que vous traversez; avançons avec douceur.",
+      "Merci de mettre des mots sur cette peine; cela montre votre courage.",
+      "Accueillons cette tristesse sans la juger, pas à pas."
+    ],
+    "phase_2_exploration": [
+      "Vous m'aidez vraiment à comprendre ce que vous vivez. Continuez, je suis entièrement à votre écoute.",
+      "C'est important que vous exploriez ces sentiments. Chaque détail que vous partagez m'aide à vous soutenir.",
+      "Vous montrez beaucoup d'introspection. C'est une excellente première étape vers le changement.",
+      "Ce que vous décrivez est très courageux. Peu de gens osent explorer ainsi leurs émotions.",
+      "Je vois comment cette tristesse affecte différents domaines de votre vie. Ensemble, travaillons sur chaque aspect.",
+      "Vous révélez des patterns importants. Cette prise de conscience est déjà un pas vers l'amélioration.",
+      "Quand vous décrivez ces moments, des nuances importantes apparaissent.",
+      "Repérons ensemble les situations où la tristesse devient plus intense.",
+      "Votre clarté sur ce que vous vivez est une base solide pour avancer.",
+      "Chaque exemple que vous donnez éclaire un aspect clé de votre vécu."
+    ],
+    "phase_3_solution": [
+      "Maintenant que nous comprenons mieux, regardons comment avancer ensemble.",
+      "Vous avez identifié ce qui vous pèse. Parlons des premiers petits changements possibles.",
+      "Votre volonté de changer est évidente. Créons un plan réaliste et progressif.",
+      "Ensemble, nous pouvons transformer cette tristesse en action positive et constructive.",
+      "Vous avez les ressources en vous. Laissez-moi vous aider à les libérer.",
+      "Cette énergie que je sens - c'est celle du changement. Canalisez-la vers vos objectifs.",
+      "Essayons de petits gestes quotidiens qui nourrissent ce qui vous fait du bien.",
+      "Planifions un rituel simple pour traverser les pics de tristesse.",
+      "Choisissons une première action réaliste à tester d'ici demain.",
+      "Ancrons les moments apaisants afin qu'ils soient plus accessibles."
+    ],
+    "phase_4_suivi": [
+      "Comment vous êtes-vous senti(e) depuis notre dernière conversation? J'aimerais vraiment connaître les progrès.",
+      "Continuez comme ça. Vos efforts payent. Comment vous sentez-vous maintenant?",
+      "Je suis fier(ère) des pas que vous avez faits. Parlons de ce qui a marché et ce qui peut s'améliorer.",
+      "Votre engagement envers vous-même est inspirant. Comment cela se traduit dans votre quotidien?",
+      "Les améliorations que vous mentionnez sont réelles et durables. Comment consolidons-nous ces gains?",
+      "Vous construisez une meilleure version de vous. Où en êtes-vous dans ce processus?",
+      "Qu'avez-vous remarqué de différent dans votre semaine?",
+      "Quelles actions vous ont apporté le plus d'apaisement?",
+      "Où voyez-vous un peu plus de légèreté aujourd'hui?",
+      "Que souhaitez-vous garder ou ajuster pour la suite?"
+    ],
+    "transition_phrases": [
+      "Avant d'aller plus loin, j'aimerais vraiment comprendre...",
+      "C'est important - dites-moi plus sur...",
+      "Je remarque quelque chose d'intéressant. Pouvez-vous développer?",
+      "Cela me fait penser à une autre dimension. Qu'en est-il de...?",
+      "Merci de partager cela. Cela m'aide à voir le tableau complet.",
+      "Vous m'offrez une fenêtre précieuse sur votre expérience. Approfondissons...",
+      "Avant de continuer, situons ce qui pèse le plus.",
+      "Zoomons sur un moment précis pour mieux comprendre.",
+      "Revenons un instant sur ce détail important.",
+      "Si vous êtes d'accord, explorons cet aspect concret."
+    ]
+  },
+  "anxiete": {
+    "phase_1_initial": [
+      "Je remarque l'anxiété dans votre voix. C'est une réaction naturelle que votre corps utilise pour vous protéger.",
+      "Ce que vous ressentez - cette tension et cette inquiétude - est réel et valide.",
+      "L'anxiété peut être très inconfortable. Merci de me la confier. Ensemble, nous pouvons l'apprivoiser.",
+      "Votre système nerveux est en alerte. C'est normal, et nous pouvons travailler à le calmer progressivement.",
+      "Je comprends. L'anxiété crée une boucle mentale épuisante. Vous n'êtes pas seul(e) à la vivre ainsi.",
+      "Votre anxiété n'est pas une faiblesse - c'est votre esprit qui veut vous protéger. Parlons de comment l'aider.",
+      "Cette alerte intérieure essaie de vous protéger; prenons le temps de l'écouter.",
+      "Vos sensations sont cohérentes avec un état de vigilance; c'est compréhensible.",
+      "Merci de décrire ces signes d'anxiété; nous pouvons les apprivoiser ensemble.",
+      "Posons un cadre calme pour que votre système nerveux retrouve du repos."
+    ],
+    "phase_2_exploration": [
+      "Vous décrivez précisément comment votre anxiété fonctionne. Cette conscience est un atout majeur.",
+      "Vous identifiez bien les déclencheurs. C'est exactement le travail qu'il faut faire.",
+      "Excellent - vous voyez les connections entre vos pensées et vos sensations physiques. C'est profond.",
+      "Vous montrez une vraie compréhension de vos patterns. C'est impressionnant et ça va vous aider.",
+      "Continuez cette exploration. Vous découvrez des choses très importantes sur vous.",
+      "Votre anxiété a des raisons. Comprendre ces raisons c'est déjà commencer à la transformer.",
+      "Vous différenciez bien pensées, émotions et sensations; c'est précieux.",
+      "Repérons quand l'anticipation prend le dessus sur l'observation.",
+      "Votre description des déclencheurs nous aide à clarifier les priorités.",
+      "Chaque précision sur vos signaux corporels guide la suite."
+    ],
+    "phase_3_solution": [
+      "Maintenant que nous voyons clair, créons ensemble des stratégies concrètes et testées scientifiquement.",
+      "Vous êtes prêt(e) à changer votre relation avec l'anxiété. Voici comment nous allons procéder.",
+      "Les techniques que je vais vous proposer sont simples mais puissantes. Commençons par les plus efficaces.",
+      "Votre anxiété réduira avec la pratique. Donnez-vous du temps et de la patience.",
+      "Vous allez apprendre à reprendre le contrôle. C'est un processus, pas une destination.",
+      "Ces outils vont progressivement transformer votre rapport à l'anxiété. Commençons maintenant.",
+      "Pratiquons une respiration courte et régulière, puis notons l'effet.",
+      "Testons une exposition graduée en commençant par une situation simple.",
+      "Utilisons des ancrages sensoriels pour revenir au présent.",
+      "Rédigeons un plan de coping pour les moments de montée anxieuse."
+    ],
+    "phase_4_suivi": [
+      "Vos progrès sont remarquables! Comment vous sentez-vous par rapport à vos succès?",
+      "Continuez à pratiquer. Les améliorations que vous avez remarquées vont s'amplifier.",
+      "Vous maîtrisez mieux votre anxiété. Qu'est-ce qui a vraiment fait la différence?",
+      "Vous reprenez progressivement votre vie. C'est magnifique à voir.",
+      "Les moments difficiles? Vous les gérez de mieux en mieux. Parlons de vos stratégies gagnantes.",
+      "Vous construisez une meilleure résilience. Comment consolidons-nous ces acquis?",
+      "Quelles techniques ont été les plus aidantes cette semaine?",
+      "Dans quelles situations vous sentez-vous plus capable de rester présent(e)?",
+      "Qu'avez-vous appris sur votre tolérance à l'inconfort?",
+      "Quels ajustements rendent les pratiques plus soutenables?"
+    ],
+    "transition_phrases": [
+      "Avant d'avancer, j'aimerais clarifier...",
+      "Cet aspect est crucial. Dites-moi plus sur...",
+      "Vous mentionnez quelque chose d'important. Creusons...",
+      "Je vois une connection intéressante. Pensez-vous que...?",
+      "Votre description est très claire. Et d'un point de vue physique...?",
+      "Merci cette précision. Une dernière question pour mieux comprendre...",
+      "Avant d'aller plus loin, où ressentez-vous l'anxiété dans le corps?",
+      "Clarifions le scénario que votre esprit anticipe.",
+      "Reformulons ce que vous venez d'exprimer pour valider.",
+      "Sélectionnons un seul élément sur lequel nous concentrer."
+    ]
+  },
+  "colere": {
+    "phase_1_initial": [
+      "Je perçois votre colère et elle est justifiée. Elle vous dit que quelque chose d'important a été violé.",
+      "Votre colère est un signal puissant. Elle mérite d'être écoutée, pas réprimée.",
+      "C'est courageux d'exprimer cette colère. Beaucoup la répriment par peur. Pas vous.",
+      "Je remarque la force dans votre voix. C'est l'énergie de la colère - nous pouvons la transformer constructivement.",
+      "Votre colère a une source. Explorons-la ensemble pour la transformer en action positive.",
+      "Cette colère reflète vos limites ou vos valeurs qui ont été blessées. C'est important.",
+      "Cette énergie dit qu'une limite a été touchée; c'est significatif.",
+      "Votre colère pointe un besoin non respecté; accueillons ce message.",
+      "Merci d'oser la nommer; c'est une étape vers la transformer.",
+      "Gardons cet élan tout en créant de la sécurité autour."
+    ],
+    "phase_2_exploration": [
+      "Vous comprenez bien ce qui vous met en colère. C'est une excellente base de travail.",
+      "Vous identifiez les déclencheurs avec précision. C'est le début du contrôle.",
+      "Votre analyse est lucide. Vous voyez les patterns de votre colère clairement.",
+      "Excellent - vous comprenez comment cette colère affecte vos relations. C'est une perspective importante.",
+      "Vous montrez une grande conscience de vous-même. Cela va vous permettre de changer.",
+      "Vous explorez les nuances de votre colère. C'est sophistiqué et très utile.",
+      "Vous repérez les moments où la tension monte; c'est éclairant.",
+      "Distinguons les faits des interprétations pour gagner en clarté.",
+      "Nommer les valeurs atteintes aide à mieux vous protéger.",
+      "Observer le cycle de la colère prépare des choix différents."
+    ],
+    "phase_3_solution": [
+      "Transformons cette colère légale en action constructive et efficace.",
+      "Votre colère a du potentiel. Canalisez-la vers le changement que vous voulez voir.",
+      "Ensemble, créons un plan pour exprimer votre colère de manière saine et respectueuse.",
+      "Vous pouvez utiliser cette énergie pour établir des limites claires et protéger ce qui compte.",
+      "Cette colère peut devenir votre force. Apprenons comment l'utiliser sagement.",
+      "Votre désir de changement est fort. Allons-y, créons ensemble une stratégie gagnante.",
+      "Co-construisons des phrases limites claires et respectueuses.",
+      "Planifions une pause active quand le seuil est franchi.",
+      "Exerçons une communication assertive sur un cas concret.",
+      "Canalisons l'énergie vers une action alignée sur vos valeurs."
+    ],
+    "phase_4_suivi": [
+      "Comment avez-vous exprimé votre colère de manière plus saine? Je suis curieux(se).",
+      "Vos limites sont devenues plus claires. Comme vous vous sentez à ce sujet?",
+      "Vos relations s'améliorent? Je remarque une certaine sérénité dans votre voix.",
+      "Vous gérez mieux les situations frustrantes. Qu'est-ce qui a changé chez vous?",
+      "Votre colère est moins destructrice maintenant. Elle est devenue votre alliée?",
+      "Continuez ainsi. Votre transformation est inspirante.",
+      "Qu'est-ce qui vous a aidé à exprimer sans blesser?",
+      "Dans quels contextes avez-vous tenu vos limites?",
+      "Quelles stratégies ont désamorcé une escalade?",
+      "Que souhaitez-vous renforcer pour la prochaine fois?"
+    ],
+    "transition_phrases": [
+      "Votre colère soulève une question importante...",
+      "C'est une bonne observation. Et concernant...?",
+      "Vous mettez le doigt sur quelque chose. Approfondissons...",
+      "Je comprends pourquoi vous êtes en colère. Mais considérez aussi...",
+      "Votre perspective est valide. Et du point de vue de...?",
+      "Cet aspect est crucial pour avancer. Parlez-moi de...",
+      "Avant d'agir, clarifions l'intention derrière votre message.",
+      "Revenons au besoin central que la colère exprime.",
+      "Ajoutons un exemple précis pour travailler dessus.",
+      "Voyons comment cela impacte vos relations clés."
+    ]
+  },
+  "peur": {
+    "phase_1_initial": [
+      "Je sens la peur dans votre voix et elle est réelle. C'est une émotion protectrice que nous respecterons ensemble.",
+      "Votre peur a du sens. Elle vous parle d'un danger perçu. Écoutons-la avec respect.",
+      "C'est brave de reconnaître cette peur. Beaucoup la nient ou la cachent. Pas vous.",
+      "Je vois cette peur vous paralyser. Ensemble, nous allons la transformer en sagesse et prudence.",
+      "Votre peur révèle vos priorités et ce qui compte vraiment pour vous.",
+      "Cette peur est un signal. Découvrons ensemble ce qu'elle vous dit.",
+      "Cette peur signale quelque chose d'important; prenons-la au sérieux.",
+      "Merci de la nommer; cela ouvre un espace de sécurité.",
+      "Votre prudence est une ressource; apprenons à l'utiliser.",
+      "Ralentissons pour que la peur ait de la place sans envahir."
+    ],
+    "phase_2_exploration": [
+      "Vous explorez votre peur avec beaucoup de courage. C'est exactement ce qu'il faut faire.",
+      "Vous identifiez les sources avec clarté. C'est une étape fondamentale.",
+      "Votre compréhension de votre peur approfondit. Continuez, vous êtes sur la bonne voie.",
+      "Vous voyez comment votre peur affecte vos choix. C'est une conscience très utile.",
+      "Excellent - vous discernez entre peur réelle et pensée catastrophique. C'est crucial.",
+      "Vous montrez une grande introspection. Votre peur devient plus transparent.",
+      "Vous distinguez mieux le risque réel du scénario imaginé.",
+      "Décrivons la situation redoutée avec des détails observables.",
+      "Repérons ce qui augmente ou diminue l'intensité.",
+      "Relions cette peur à vos valeurs de protection."
+    ],
+    "phase_3_solution": [
+      "Maintenant que nous comprenons votre peur, apprenons à vivre avec elle de façon courageuse.",
+      "Votre peur ne disparaîtra peut-être pas complètement, mais vous pouvez la gérer différemment.",
+      "Ensemble, construisons des stratégies pour affronter progressivement ce qui vous fait peur.",
+      "Votre courage est déjà là. Permettez-moi de vous aider à l'exprimer.",
+      "Ces techniques vont renforcer votre confiance face à la peur. Commençons.",
+      "Vous allez apprendre à faire peur sans la laisser vous paralyser. C'est possible.",
+      "Construisons une échelle graduée d'exposition prudente.",
+      "Préparons un script d'auto-apaisement pour les pics.",
+      "Mettons en place un filet de sécurité avant l'essai.",
+      "Célébrons chaque pas, même minuscule, pour renforcer la confiance."
+    ],
+    "phase_4_suivi": [
+      "Vos pas courageux face à votre peur - comment se sentent-ils maintenant?",
+      "Vous êtes plus confiant(e). Je le remarque. Quels progrès remarquez-vous?",
+      "Vous vous affrontez progressivement votre peur. C'est admirable.",
+      "Les situations difficiles? Vous les traversez maintenant. Comment avez-vous trouvé la force?",
+      "Votre peur diminue avec la pratique. Continuez exactement comme ça.",
+      "Vous découvrez votre propre courage. C'est magnifique à voir.",
+      "Quels pas ont été possibles depuis la dernière fois?",
+      "Où avez-vous senti un peu plus d'espace intérieur?",
+      "Quelles ressources ont été les plus utiles?",
+      "Quel sera le prochain pas raisonnable?"
+    ],
+    "transition_phrases": [
+      "Votre peur soulève une question importante...",
+      "C'est une peur très humaine. Mais parlons aussi de...",
+      "Je comprends cette crainte. Creusons un peu plus...",
+      "C'est une dimension de votre peur. Et concernant...?",
+      "Votre instinct de protection est bon. Mais considérez aussi...",
+      "Cela me montre quelque chose. Dites-moi plus sur...",
+      "Avant de tester, cadrons les conditions de sécurité.",
+      "Nommons ce que vous craignez le plus, en une phrase.",
+      "Si c'était un signal, que dirait-il exactement?",
+      "Identifions une situation à faible enjeu pour commencer."
+    ]
+  },
+  "neutre": {
+    "phase_1_initial": [
+      "Bienvenue. Je suis ici pour vous écouter authentiquement, sans jugement.",
+      "Merci d'être venu(e). C'est un espace sûr où vous pouvez être vraiment vous-même.",
+      "Je suis attentif à ce que vous ressentirez. Vous pouvez être totalement honnête avec moi.",
+      "Prenez votre temps. Ce que vous avez à dire m'importe vraiment.",
+      "Vous êtes important(e). Votre bien-être m'intéresse sincèrement.",
+      "C'est un plaisir de vous rencontrer. Parlons de ce qui vous amène aujourd'hui.",
+      "Bienvenue; posons un cadre simple et clair pour avancer.",
+      "Merci pour votre présence; prenons le temps d'installer le rythme.",
+      "Cet espace est pour vous; allons à votre cadence.",
+      "Commençons par ce qui vous semble prioritaire aujourd'hui."
+    ],
+    "phase_2_exploration": [
+      "Vous me montrez une autre facette. C'est très instructif.",
+      "Continuez à explorer. Je suis toujours à l'écoute et je comprends.",
+      "Votre perspective est intéressante. Approfondissons ensemble.",
+      "Vous soulevez un point important. Parlons-en plus.",
+      "Je vois comment les choses s'assemblent chez vous. C'est une image claire.",
+      "Merci cette honnêteté. Cela m'aide vraiment à vous comprendre.",
+      "Votre point de vue se précise; continuons à clarifier.",
+      "Mettons à plat les éléments clés pour mieux choisir.",
+      "Relions les faits, les besoins et les options possibles.",
+      "Votre discernement s'affine; c'est aidant."
+    ],
+    "phase_3_solution": [
+      "Vous savez ce qui vous conviendrait. Créons un plan ensemble.",
+      "Vos intuitions sont bonnes. Suivons-les dans une direction constructive.",
+      "Vous avez les réponses en vous. Aidez-moi à les découvrir.",
+      "Ensemble, nous pouvons créer quelque chose de positif et durable.",
+      "Votre bien-être est notre priorité. Commençons par les bases.",
+      "Vous êtes capable de grands changements. Commençons maintenant.",
+      "Choisissons un objectif réaliste et une première étape.",
+      "Découpons la tâche en actions simples et datées.",
+      "Définissons des indicateurs concrets de progression.",
+      "Préparons un plan B pour rester flexible."
+    ],
+    "phase_4_suivi": [
+      "Comment vous sentez-vous maintenant? Quels changements notez-vous?",
+      "Vos efforts portent leurs fruits. Continuez sur cette lancée.",
+      "Vous évoluez positivement. Comment gérez-vous ce progrès?",
+      "Vos objectifs se concrétisent. Comment consolidons-nous ces gains?",
+      "Je remarque votre progression. Où aimeriez-vous aller maintenant?",
+      "Votre engagement envers vous-même est payant. Continuez ainsi.",
+      "Qu'est-ce qui a le mieux fonctionné depuis?",
+      "Quels apprentissages souhaitez-vous garder?",
+      "Où ajuster le plan pour l'aligner à vos priorités?",
+      "Quel est le prochain micro-pas?"
+    ],
+    "transition_phrases": [
+      "C'est une bonne observation. Et concernant...?",
+      "Je comprends votre point. Mais voyons aussi...",
+      "Vous mettez le doigt sur quelque chose. Creusons...",
+      "C'est une perspective valide. Et si nous explorions aussi...?",
+      "Merci cette clarté. Une dernière question...",
+      "Votre approche est intéressante. Parlons également de...",
+      "Avant de décider, vérifions l'alignement avec vos valeurs.",
+      "Récapitulons en une phrase la direction choisie.",
+      "Clarifions la prochaine action et quand la faire.",
+      "Gardons en tête le pourquoi derrière le choix."
+    ]
+  },
+  "contextual_enrichments": {
+    "seul|isolé|solitude": {
+      "tristesse": " La solitude amplifie souvent la tristesse. Vos sentiments sont encore plus importants à exprimer.",
+      "anxiete": " L'isolation peut intensifier l'anxiété. Connecter-vous avec d'autres peut vraiment aider.",
+      "colere": " Être seul avec sa colère la laisse s'accumuler. Merci de la partager ici.",
+      "peur": " La solitude face à la peur peut être terrifiante. Vous avez du courage de m'en parler."
+    },
+    "suicide|mort|fin|mourir": {
+      "general": " Je remarque que vous mentionnez des pensées très graves. C'est important, et je vous encourage vivement à chercher une aide professionnelle immédiate. Vous méritez du soutien. "
+    },
+    "aide|help|aide-moi": {
+      "general": " Vous me dites directement que vous avez besoin d'aide. C'est déjà un pas courageux. Je suis là, et nous allons avancer ensemble."
+    },
+    "better|mieux|amélioration|progrès": {
+      "general": " C'est magnifique! Les changements positifs que vous décrivez montrent votre engagement envers vous-même. Continuez!"
+    },
+    "merci|reconnaissant": {
+      "general": " La gratitude que vous exprimez - c'est un signe de croissance. Vous appréciez ce qui va bien. C'est excellent."
+    }
+  }
+}
