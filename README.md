@@ -34,3 +34,24 @@ python app/app.py
 
 # 4. Tester l'API (autre terminal)
 python test_api.py
+
+## Optionnel : Enrichissement via Hugging Face (API)
+
+Le service avancé `TherapistServiceAdvanced` peut appeler l'Inference API de Hugging Face
+pour reformuler et enrichir les réponses. Si vous ne fournissez pas de clé, le service retombera
+sur le fallback local (aucun coût).
+
+Configuration :
+
+- Définir la variable d'environnement `HF_API_KEY` avec votre clé Hugging Face (optionnel).
+- (Option) changer le modèle via `HF_MODEL` (ex: `google/flan-t5-small`).
+
+Exemples (Windows bash) :
+
+```bash
+export HF_API_KEY="hf_xxx..."
+export HF_MODEL="google/flan-t5-small"
+python app/app.py
+```
+
+Si `HF_API_KEY` est absente, l'application fonctionnera normalement avec le moteur local.

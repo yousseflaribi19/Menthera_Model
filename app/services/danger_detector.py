@@ -1,62 +1,73 @@
 # app/services/danger_detector.py
-import json
-import os
+import re
+from app.services.data_loader import load_json
+
 
 class DangerDetector:
-    """Détecte le niveau de danger dans le discours"""
-    
+    """Détecte le niveau de danger dans le discours.
+
+    Améliorations:
+    - Normalisation du texte (minuscules, suppression ponctuation)
+    - Chargement sécurisé des ressources d'urgence via data_loader
+    - Détection par patterns et poids plus explicites
+    """
+
     CRITICAL_KEYWORDS = [
         'suicide', 'suicider', 'mort', 'mourir', 'tuer', 'finir',
         'en finir', 'disparaître', 'plus envie', 'abandonne',
         'sans issue', 'désespoir', 'désespéré'
     ]
-    
+
     HIGH_RISK_KEYWORDS = [
         'dépression', 'déprimé', 'triste', 'anxieux', 'peur',
         'panique', 'angoisse', 'mal', 'souffre', 'douleur',
         'seul', 'isolé', 'personne', 'comprend'
     ]
-    
+
     def __init__(self):
-        # Charger ressources d'urgence
-        resources_path = os.path.join('app', 'data', 'emergency_resources.json')
-        try:
-            with open(resources_path, 'r', encoding='utf-8') as f:
-                self.emergency_resources = json.load(f)
-        except:
-            self.emergency_resources = {}
-    
+        self.emergency_resources = load_json('emergency_resources.json')
+
+    def _normalize(self, text):
+        if not text:
+            return ''
+        t = text.lower()
+        t = re.sub(r"[^a-z0-9àâäéèêëïîôöùûüç\s'-]", ' ', t)
+        return re.sub(r"\s+", ' ', t).strip()
+
     def analyze_text(self, text, emotion, confidence):
-        """Analyse le texte et retourne un niveau de danger (0-10)"""
         if not text:
             return {'danger_score': 0, 'risk_level': 'FAIBLE', 'action': 'CONVERSATION_NORMALE', 'triggers': []}
-        
-        text_lower = text.lower()
+
+        txt = self._normalize(text)
         danger_score = 0
         triggers = []
-        
-        # Vérifier mots critiques
-        for keyword in self.CRITICAL_KEYWORDS:
-            if keyword in text_lower:
+
+        # Critiques -> plus de poids
+        for kw in self.CRITICAL_KEYWORDS:
+            if kw in txt:
                 danger_score += 3
-                triggers.append(keyword)
-        
-        # Vérifier mots à risque
-        for keyword in self.HIGH_RISK_KEYWORDS:
-            if keyword in text_lower:
+                triggers.append(kw)
+
+        # Mots à risque
+        for kw in self.HIGH_RISK_KEYWORDS:
+            if kw in txt:
                 danger_score += 1
-                triggers.append(keyword)
-        
-        # Analyser émotion
+                triggers.append(kw)
+
+        # Phrases longues exprimant finalité
+        if any(p in txt for p in ['je veux mourir', 'j en ai marre', 'je n ai plus envie']):
+            danger_score += 3
+            triggers.append('phrases_finalite')
+
+        # Ajustement par émotion et confiance
         if emotion in ['tristesse', 'peur', 'anxiete']:
-            if confidence > 0.8:
+            if confidence and confidence > 0.8:
                 danger_score += 2
-            elif confidence > 0.6:
+            elif confidence and confidence > 0.6:
                 danger_score += 1
-        
-        danger_score = min(danger_score, 10)
-        
-        # Déterminer niveau
+
+        danger_score = min(10, danger_score)
+
         if danger_score >= 8:
             risk_level = 'CRITIQUE'
             action = 'URGENCE_IMMEDIATE'
@@ -69,43 +80,34 @@ class DangerDetector:
         else:
             risk_level = 'FAIBLE'
             action = 'CONVERSATION_NORMALE'
-        
+
         return {
             'danger_score': danger_score,
             'risk_level': risk_level,
             'action': action,
-            'triggers': list(set(triggers))
+            'triggers': list(dict.fromkeys(triggers))
         }
-    
+
     def get_emergency_response(self, danger_analysis, country='france'):
-        """Génère une réponse d'urgence"""
-        
-        if danger_analysis['action'] == 'URGENCE_IMMEDIATE':
+        if danger_analysis.get('action') == 'URGENCE_IMMEDIATE':
             country_resources = self.emergency_resources.get(country, {})
-            
             return {
-                'message': "Je détecte que vous traversez une situation très difficile. Votre sécurité est ma priorité absolue.",
+                'message': "Je détecte une situation sérieuse. Votre sécurité est prioritaire.",
                 'emergency_numbers': country_resources,
                 'immediate_actions': [
-                    "Appelez immédiatement le 3114 (France) ou le numéro d'urgence de votre pays",
-                    "Ne restez pas seul(e), contactez un proche",
-                    "Si danger immédiat, appelez le 15 (SAMU) ou le 112"
-                ],
-                'resources': [
-                    "SOS Amitié: 09 72 39 40 50",
-                    "Ligne d'écoute 24h/24"
+                    "Appelez les services d'urgence locaux immédiatement",
+                    "Ne restez pas seul(e) — demandez à quelqu'un de rester avec vous",
+                    "Si possible, retirez tout objet dangereux autour de vous"
                 ]
             }
-        
-        elif danger_analysis['action'] == 'CONSULTATION_URGENTE':
+
+        if danger_analysis.get('action') == 'CONSULTATION_URGENTE':
             return {
-                'message': "Je sens que vous ne vous sentez pas bien. Il serait important de consulter un professionnel rapidement.",
+                'message': "Il serait utile de consulter un professionnel rapidement.",
                 'recommendations': [
-                    "Prenez rendez-vous avec un psychologue dans les 48h",
-                    "Parlez-en à votre médecin traitant",
-                    "Contactez une ligne d'écoute si besoin"
+                    "Contactez un soignant ou une ligne d'écoute aujourd'hui",
+                    "Demandez à un proche de vous accompagner si possible"
                 ]
             }
-        
-        else:
-            return None
+
+        return None

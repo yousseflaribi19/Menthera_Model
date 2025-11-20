@@ -8,81 +8,190 @@ Utilise les fichiers JSON pour des réponses fluides et variées
 - emergency_resources.json: Ressources en cas de crise
 """
 
-import json
-import os
 import random
+import re
 from datetime import datetime
 
+from app.services.data_loader import load_json, safe_get
+
+
 class TherapistServiceFree:
-    """Psychologue virtuel basé sur données JSON enrichies - SUPER SOLUTION v2"""
-    
+    """Service thérapeutique - réponse plus humaine, robustesse JSON et cache.
+
+    Principes appliqués:
+    - Chargement JSON sécurisé + caching via `data_loader.load_json`
+    - Eviter répétitions par session (tracking léger)
+    - Réponses construites à partir de templates, transitions et enrichissements contextuels
+    - Pas de dépendance externe lourde (fonctionne en environnement limité)
+    """
+
+    PHASES = ['phase_1_initial', 'phase_2_exploration', 'phase_3_solution', 'phase_4_suivi']
+
     def __init__(self):
-        """Initialise le service avec tous les fichiers de données"""
-        
-        # 1. Charger les QUESTIONS
-        questions_path = os.path.join('app', 'data', 'questions.json')
-        with open(questions_path, 'r', encoding='utf-8') as f:
-            self.questions_data = json.load(f)
-        
-        # 2. Charger les RÉPONSES ENRICHIES
-        responses_path = os.path.join('app', 'data', 'responses.json')
-        with open(responses_path, 'r', encoding='utf-8') as f:
-            self.responses_data = json.load(f)
-        
-        # 3. Charger les EXERCICES
-        exercises_path = os.path.join('app', 'data', 'exercises.json')
-        with open(exercises_path, 'r', encoding='utf-8') as f:
-            self.exercises_data = json.load(f)
-        
-        # 4. Charger les RESSOURCES D'URGENCE
-        emergency_path = os.path.join('app', 'data', 'emergency_resources.json')
-        with open(emergency_path, 'r', encoding='utf-8') as f:
-            self.emergency_resources = json.load(f)
-        
-        # TRACKING par session pour garantir l'unicité (zedtha jdida)
-        self.session_history = {}  # {session_id: {used_responses, used_questions}}
-        self.emotion_rotation = {}  # Rotation des réponses par émotion/phase
-        self._initialize_rotation()
-        
-    
-    def _initialize_rotation(self):
-        """Initialise la rotation des réponses pour chaque émotion/phase"""
-        for emotion in self.responses_data:
+        # Charger les fichiers (cachés par load_json)
+        self.questions_data = load_json('questions.json')
+        self.responses_data = load_json('responses.json')
+        self.exercises_data = load_json('exercises.json')
+        self.emergency_resources = load_json('emergency_resources.json')
+
+        # Simple tracking pour éviter répétitions évidentes
+        # structure: { session_id: {'responses': set(), 'questions': set()} }
+        self.session_history = {}
+
+        # Préparer rotors par émotion+phase (liste copiée)
+        self._prepare_rotations()
+
+        # Définitions locales enrichies (utilisées par advanced local_enrich)
+        # Préfixes empathiques par émotion
+        self.emotion_prefixes = {
+            'tristesse': [
+                "Je suis vraiment désolé(e) que vous traversiez cela.",
+                "Je peux imaginer combien cela doit être lourd à porter.",
+                "Merci de me confier ce que vous ressentez — c'est important."
+            ],
+            'anxiete': [
+                "Je comprends que cela puisse être angoissant.",
+                "La peur et l'inquiétude sont des réactions normales face à ça.",
+                "C'est compréhensible que vous soyez inquiet(e) en ce moment."
+            ],
+            'colere': [
+                "Je perçois beaucoup de colère dans ce que vous dites.",
+                "Il est légitime de se sentir en colère face à une injustice.",
+                "Cela semble vous avoir vraiment mis en difficulté."
+            ],
+            'peur': [
+                "La peur que vous décrivez a l'air intense.",
+                "Ressentir de la peur dans cette situation est compréhensible.",
+                "Merci d'avoir partagé cette inquiétude — c'est courageux."
+            ],
+            'neutre': [
+                "Je vous écoute attentivement.",
+                "Merci de partager cela avec moi.",
+                "Je suis là pour vous accompagner dans ce que vous vivez."
+            ]
+        }
+
+        # Questions de suivi par émotion
+        self.emotion_followups = {
+            'tristesse': [
+                "Pouvez-vous me dire quel moment de la journée cela touche le plus?",
+                "Qu'est-ce qui, selon vous, déclenche le plus souvent cette tristesse?",
+                "Y a-t-il quelque chose qui vous apporte un peu de réconfort ces derniers temps?"
+            ],
+            'anxiete': [
+                "Qu'est-ce qui, précisément, vous inquiète le plus en ce moment?",
+                "Avez-vous remarqué des signes physiques quand l'anxiété monte?",
+                "Y a-t-il une pensée ou une image qui revient souvent?"
+            ],
+            'colere': [
+                "Pouvez-vous décrire l'événement qui a déclenché votre colère?",
+                "Qu'est-ce que vous aimeriez changer dans cette situation?",
+                "Y a-t-il une personne impliquée avec qui vous voudriez communiquer différemment?"
+            ],
+            'peur': [
+                "Quand avez-vous ressenti cette peur pour la première fois?",
+                "Quelles mesures vous aident légèrement à vous sentir plus en sécurité?",
+                "Y a-t-il des exemples où la peur n'a pas été aussi forte?"
+            ],
+            'neutre': [
+                "Parlez-moi un peu plus de ce qui se passe pour vous aujourd'hui.",
+                "Qu'aimeriez-vous explorer ensemble en priorité?",
+                "Y a-t-il un changement récent qui vous a affecté?"
+            ]
+        }
+
+        # Phrases longues structurées (templates) utilisables pour enrichir
+        self.long_templates = {
+            'tristesse': [
+                "Je sais que les pertes et les séparations peuvent laisser un grand vide; parfois, partager un souvenir concret peut alléger un peu le poids.",
+                "Lorsque la tristesse s'installe, il peut être utile de noter trois choses, même petites, qui ont apporté un léger apaisement aujourd'hui.",
+            ],
+            'anxiete': [
+                "Quand l'anxiété survient, respirer en comptant lentement peut aider à reprendre un peu de contrôle sur le corps et l'esprit.",
+                "Structurer la journée en petites étapes atteignables réduit souvent la sensation d'être submergé(e)."
+            ],
+            'colere': [
+                "La colère peut contenir un message important sur nos limites; l'identifier peut aider à agir plus calmement par la suite.",
+                "Prendre un temps pour nommer précisément ce qui met en colère permet ensuite de décider d'une réponse choisie plutôt qu'impulsive."
+            ],
+            'peur': [
+                "La peur protège, mais peut aussi s'emballer; distinguer ce qui est probable de ce qui est imaginaire peut réduire sa puissance.",
+                "D'autres personnes ont trouvé utile de préparer un petit plan d'action pour les moments où la peur devient trop forte."
+            ],
+            'neutre': [
+                "Merci de partager; prendre un moment pour respirer et observer sans jugement ce qui se passe peut être un bon début.",
+                "Parfois, articuler un objectif simple pour la journée aide à rendre les choses plus gérables."
+            ]
+        }
+        # Charger templates par sujet (keywords + templates)
+        self.subject_templates = load_json('subject_templates.json')
+
+    def get_prefix(self, emotion):
+        return self.get_unique_prefix(emotion, None)
+
+    def get_followup(self, emotion):
+        return self.get_unique_followup(emotion, None)
+
+    def get_long_template(self, emotion):
+        return self.get_unique_long(emotion, None)
+
+    def _unique_from_pool(self, session_id, pool, kind):
+        """
+        Select an item from `pool` trying to avoid repeats within the same session.
+        - `session_id`: id of the session (may be None)
+        - `pool`: list of candidate strings
+        - `kind`: short key used to track usage (e.g. 'prefixes','followups','longs')
+        """
+        if not pool:
+            return ''
+        if not session_id:
+            return random.choice(pool)
+
+        s = self.session_history.setdefault(session_id, {'responses': set(), 'questions': set(),
+                                                         'prefixes': set(), 'followups': set(), 'longs': set(), 'topics': set()})
+        seen = s.setdefault(kind, set())
+
+        # find unused candidates
+        unused = [p for p in pool if p not in seen]
+        if not unused:
+            # all used; reset this kind to allow reuse
+            seen.clear()
+            unused = list(pool)
+
+        choice = random.choice(unused)
+        seen.add(choice)
+        return choice
+
+    def get_unique_prefix(self, emotion, session_id=None):
+        e = emotion or 'neutre'
+        pool = self.emotion_prefixes.get(e, self.emotion_prefixes['neutre'])
+        return self._unique_from_pool(session_id, pool, 'prefixes')
+
+    def get_unique_followup(self, emotion, session_id=None):
+        e = emotion or 'neutre'
+        pool = self.emotion_followups.get(e, self.emotion_followups['neutre'])
+        return self._unique_from_pool(session_id, pool, 'followups')
+
+    def get_unique_long(self, emotion, session_id=None):
+        e = emotion or 'neutre'
+        pool = self.long_templates.get(e, self.long_templates['neutre'])
+        return self._unique_from_pool(session_id, pool, 'longs')
+
+    def _prepare_rotations(self):
+        self.emotion_rotation = {}
+        for emotion, content in self.responses_data.items():
             if emotion == 'contextual_enrichments':
                 continue
             self.emotion_rotation[emotion] = {}
-            for phase in ['phase_1_initial', 'phase_2_exploration', 'phase_3_solution', 'phase_4_suivi']:
-                if phase in self.responses_data[emotion]:
-                    responses = self.responses_data[emotion][phase]
+            for phase in self.PHASES:
+                items = content.get(phase, [])
+                if items:
                     self.emotion_rotation[emotion][phase] = {
-                        'list': responses,
-                        'index': 0,
-                        'shuffled': responses.copy()
+                        'list': list(items),
+                        'index': 0
                     }
-                    random.shuffle(self.emotion_rotation[emotion][phase]['shuffled'])
-    
-    def _track_session(self, session_id, emotion, response_used, question_used=None):
-        """Track les réponses/questions utilisées par session"""
-        if session_id not in self.session_history:
-            self.session_history[session_id] = {
-                'responses': {emotion: [response_used]},
-                'questions': {emotion: [question_used] if question_used else []},
-                'last_emotion': emotion
-            }
-        else:
-            if emotion not in self.session_history[session_id]['responses']:
-                self.session_history[session_id]['responses'][emotion] = [response_used]
-            else:
-                self.session_history[session_id]['responses'][emotion].append(response_used)
-            
-            if question_used:
-                if emotion not in self.session_history[session_id]['questions']:
-                    self.session_history[session_id]['questions'][emotion] = [question_used]
-                else:
-                    self.session_history[session_id]['questions'][emotion].append(question_used)
-    
+
     def _get_phase(self, conversation_count):
-        """Détermine la phase de la conversation de manière fluide"""
         if conversation_count <= 1:
             return 'phase_1_initial'
         elif conversation_count <= 3:
@@ -91,175 +200,187 @@ class TherapistServiceFree:
             return 'phase_3_solution'
         else:
             return 'phase_4_suivi'
-    
+
+    def _normalize_text(self, text):
+        if not text:
+            return ''
+        text = text.lower()
+        # supprimer ponctuation basique
+        text = re.sub(r"[^a-z0-9àâäéèêëïîôöùûüç\s'-]", ' ', text)
+        return re.sub(r"\s+", ' ', text).strip()
+
     def _get_contextual_enrichment(self, transcription, emotion):
-        """
-        Cherche des mots-clés dans la transcription pour ajouter du contexte
-        Utilise responses.json pour les enrichissements contextuels
-        """
-        transcription_lower = transcription.lower()
-        contextual_enrichments = self.responses_data.get('contextual_enrichments', {})
-        
-        for keywords, responses_dict in contextual_enrichments.items():
-            # Vérifier si un mot-clé est présent
-            keyword_list = keywords.split('|')
-            if any(keyword in transcription_lower for keyword in keyword_list):
-                if isinstance(responses_dict, dict):
-                    # Chercher la réponse pour cette émotion
-                    if emotion in responses_dict:
-                        return responses_dict[emotion]
-                    elif 'general' in responses_dict:
-                        return responses_dict['general']
-        
-        return ""
-    
+        transcription_norm = self._normalize_text(transcription)
+        contextual = self.responses_data.get('contextual_enrichments', {})
+        # contextual keys may be pipe-separated keywords
+        for key, mapping in contextual.items():
+            for kw in key.split('|'):
+                kw = kw.strip()
+                if not kw:
+                    continue
+                if kw in transcription_norm:
+                    # prefer emotion-specific then general
+                    if isinstance(mapping, dict):
+                        return mapping.get(emotion) or mapping.get('general') or ''
+                    elif isinstance(mapping, str):
+                        return mapping
+        return ''
+
+    def _pick_rotated(self, emotion, phase):
+        rot = self.emotion_rotation.get(emotion, {}).get(phase)
+        if not rot:
+            # fallback to neutral
+            neutral = self.responses_data.get('neutre', {})
+            return random.choice(neutral.get(phase, ["Merci d'avoir partagé. Je suis là pour écouter."]))
+
+        lst = rot['list']
+        # rotation index simple
+        idx = rot['index'] % len(lst)
+        rot['index'] = (rot['index'] + 1) % len(lst)
+        return lst[idx]
+
+    def _avoid_repeat(self, session_id, candidate, kind='responses'):
+        if not session_id:
+            return candidate
+        s = self.session_history.setdefault(session_id, {'responses': set(), 'questions': set()})
+        seen = s.get(kind, set())
+        if candidate in seen:
+            # slight variation: try to return an alternative if available
+            # find alternative in responses pool
+            # naive approach: return candidate (we avoid heavy search)
+            return candidate
+        seen.add(candidate)
+        return candidate
+
     def generate_response(self, conversation_history, emotion, transcription, is_premium=False, session_id=None):
-        """
-        Réponse TRÈS FLUIDE et UNIQUE garantie
-        - Utilise responses.json avec rotation intelligente
-        - Ajoute contexte basé sur la transcription
-        - GARANTIT l'unicité totale par session
-        - Naturalité humaine maximale
-        """
         conversation_count = len(conversation_history) // 2
         phase = self._get_phase(conversation_count)
-        
-        # Obtenir les réponses pour cette émotion + phase
-        emotion_responses = self.responses_data.get(emotion, self.responses_data.get('neutre'))
-        phase_responses = emotion_responses.get(phase, emotion_responses.get('phase_1_initial', []))
-        
-        # Sélectionner une réponse UNIQUE via rotation
-        if phase_responses:
-            if emotion in self.emotion_rotation and phase in self.emotion_rotation[emotion]:
-                rotation = self.emotion_rotation[emotion][phase]
-                
-                # Si on a épuisé la liste, la réinitialiser et mélanger
-                if rotation['index'] >= len(rotation['shuffled']):
-                    rotation['shuffled'] = rotation['list'].copy()
-                    random.shuffle(rotation['shuffled'])
-                    rotation['index'] = 0
-                
-                # Prendre la réponse suivante dans la rotation
-                base_response = rotation['shuffled'][rotation['index']]
-                rotation['index'] += 1
-            else:
-                # sélection aléatoire simple
-                base_response = random.choice(phase_responses)
-        else:
-            base_response = "Merci de partager. Je suis ici pour vous écouter."
-        
-        # Obtenir une phrase de transition
-        transition_responses = emotion_responses.get('transition_phrases', [])
-        transition = random.choice(transition_responses) if transition_responses else ""
-        
-        # Ajouter enrichissement contextuel (20+ patterns)
-        contextual = self._get_contextual_enrichment(transcription, emotion)
-        
-        # Construire la réponse finale de manière fluide
-        response_parts = [base_response]
-        
-        # Ajouter transition si approprié
-        if conversation_count >= 2 and transition:
-            response_parts.append(transition)
-        
-        # Ajouter contextuel s'il existe (personnalisation)
-        if contextual:
-            response_parts.append(contextual)
-        
-        final_response = " ".join(response_parts)
-        
-        # Nettoyer les espaces multiples et normaliser
-        final_response = " ".join(final_response.split())
-        
-        # Tracker pour éviter répétitions en session
-        if session_id:
-            self._track_session(session_id, emotion, final_response)
-        
-        return final_response.strip()
-    
+
+        # Sélection de base via rotation
+        base = self._pick_rotated(emotion, phase)
+
+        # transition phrase
+        transition_list = self.responses_data.get(emotion, {}).get('transition_phrases', [])
+        transition = random.choice(transition_list) if transition_list and conversation_count >= 2 else ''
+
+        # enrichissement contextuel
+        contextual = self._get_contextual_enrichment(transcription or '', emotion)
+
+        # reformulation brève (humaniser)
+        reformulation = ''
+        if transcription and len(transcription.split()) > 3:
+            # garder phrase courte: reprendre 5 premiers mots
+            reformulation = 'Si je comprends bien, vous dites : "' + ' '.join(transcription.split()[:12]) + '..."'
+
+        # Detect subject keywords from transcription to make replies specific
+        transcription_norm = self._normalize_text(transcription or '')
+        # try to find a noun-like subject (longest word >3 chars that is not a stopword)
+        subject = ''
+        if transcription_norm:
+            words = [w for w in transcription_norm.split() if len(w) > 3]
+            if words:
+                # prefer last meaningful word (often the topic)
+                subject = words[-1]
+
+        # Special-case: short polite replies for 'merci'
+        if 'merci' in transcription_norm or 'remerc' in transcription_norm:
+            polite = self.responses_data.get('contextual_enrichments', {}).get('merci|reconnaissant', {})
+            if isinstance(polite, dict):
+                return polite.get('general', 'De rien — je suis là pour vous.')
+            elif isinstance(polite, str):
+                return polite
+
+        # Assemble with subject-specific phrasing
+        # Find a matching subject/topic template by keywords (subject or transcription)
+        topic_template = ''
+        if self.subject_templates and transcription_norm:
+            for topic, data in self.subject_templates.items():
+                kws = data.get('keywords', [])
+                # check subject first
+                if subject and subject in kws:
+                    # pick a template for the emotion if available
+                    templ = data.get('templates', {}).get(emotion) or data.get('templates', {}).get('neutre')
+                    if templ:
+                        topic_template = random.choice(templ)
+                        break
+                # else check if any keyword appears in full transcription
+                for kw in kws:
+                    if kw and kw in transcription_norm:
+                        templ = data.get('templates', {}).get(emotion) or data.get('templates', {}).get('neutre')
+                        if templ:
+                            topic_template = random.choice(templ)
+                            break
+                if topic_template:
+                    break
+
+        subject_phrase = f"Je remarque que vous parlez de '{subject}'." if subject else ''
+
+        # Use session-aware unique selections for prefix / long template / followup
+        prefix = self.get_unique_prefix(emotion, session_id)
+        long_tpl = self.get_unique_long(emotion, session_id)
+        followup = self.get_unique_followup(emotion, session_id) if conversation_count >= 1 else ''
+
+        parts = [p for p in [prefix, base, topic_template, subject_phrase, transition, contextual, long_tpl, reformulation, followup] if p]
+        final = ' '.join(parts)
+        final = re.sub(r"\s+", ' ', final).strip()
+
+        # Eviter répétition évidente
+        final = self._avoid_repeat(session_id, final, 'responses')
+
+        return final
+
     def generate_questions(self, emotion, conversation_count, is_premium=False, session_id=None):
-        """
-         Questions VARIÉES ET INTELLIGENTES
-        - Jamais les mêmes questions deux fois en session
-        - Sélection ALÉATOIRE complète pour l'unicité totale
-        - Phases progressives: 2→3→3 questions
-        - Toutes les réponses différentes chaque tour
-        """
         phase = self._get_phase(conversation_count)
-        
-        # Obtenir les questions pour cette émotion + phase
-        emotion_questions = self.questions_data.get(emotion, self.questions_data.get('neutre'))
-        phase_questions = emotion_questions.get(phase, emotion_questions.get('phase_1_initial', []))
-        
-        # Déterminer le nombre de questions (VARIABLE pour naturel)
+        pool = self.questions_data.get(emotion) or self.questions_data.get('neutre', {})
+        candidates = pool.get(phase, pool.get('phase_1_initial', []))
+        if not candidates:
+            return []
+
+        # déterminer limite selon premium
         if is_premium:
-            limit = 5  # Premium: 5 questions
+            limit = min(5, len(candidates))
         else:
-            # Gratuit: progression pour fluidité
             if conversation_count <= 1:
-                limit = 2  # Début: 2 questions
+                limit = min(2, len(candidates))
             elif conversation_count <= 3:
-                limit = 3  # Milieu: 3 questions
+                limit = min(3, len(candidates))
             else:
-                limit = 3  # Suite: 3 questions variées
-        
-        # random.sample() pour GARANTIR l'unicité
-        # (différentes questions à chaque turn, jamais les mêmes en même ordre)
-        if len(phase_questions) > limit:
-            selected_questions = random.sample(phase_questions, min(limit, len(phase_questions)))
-        else:
-            selected_questions = random.sample(phase_questions, len(phase_questions))
-        
-        # 🆕 Tracker pour session
-        if session_id and selected_questions:
-            self._track_session(session_id, emotion, None, selected_questions[0])
-        
-        return selected_questions
-    
+                limit = min(3, len(candidates))
+
+        selected = random.sample(candidates, limit) if len(candidates) >= limit else list(candidates)
+        if session_id:
+            s = self.session_history.setdefault(session_id, {'responses': set(), 'questions': set()})
+            for q in selected:
+                s['questions'].add(q)
+        return selected
+
     def get_recommended_exercises(self, emotion, conversation_count, is_premium=False):
-        """
-        Recommande des exercices basés sur les fichiers exercises.json
-        """
-        exercises = self.exercises_data.get(emotion, self.exercises_data.get('neutre', {}))
-        
-        # Sélectionner les exercices appropriés
+        exercises = self.exercises_data.get(emotion) or self.exercises_data.get('neutre', {})
         if is_premium:
-            available_exercises = exercises.get('premium', []) + exercises.get('free', [])
+            pool = exercises.get('premium', []) + exercises.get('free', [])
             limit = 3
         else:
-            available_exercises = exercises.get('free', [])
+            pool = exercises.get('free', [])
             limit = 1
-        
-        # Sélectionner aléatoirement
-        if available_exercises:
-            return random.sample(available_exercises, min(limit, len(available_exercises)))
-        return []
-    
+        if not pool:
+            return []
+        return random.sample(pool, min(limit, len(pool)))
+
     def get_summary(self, emotion, danger_level, conversation_history=None):
-        """
-        Résumé de session EMPATHIQUE ET PERSONNALISÉ
-        Utilise responses.json pour la variété
-        """
-        emotion_responses = self.responses_data.get(emotion, self.responses_data.get('neutre'))
-        phase_4_responses = emotion_responses.get('phase_4_suivi', [])
-        
-        if phase_4_responses:
-            summary = random.choice(phase_4_responses)
-        else:
-            summary = "Merci d'avoir partagé avec moi. Votre bien-être m'importe."
-        
-        # Ajouter recommandation basée sur le danger
+        # choisir un template suivi
+        pool = self.responses_data.get(emotion, {}).get('phase_4_suivi', []) or self.responses_data.get('neutre', {}).get('phase_4_suivi', [])
+        summary = random.choice(pool) if pool else "Merci d'avoir partagé ; prenez soin de vous."
+
         if danger_level >= 8:
-            summary += "\n\n🚨 **URGENT**: Vos pensées semblent très sérieuses. Je vous encourage fortement à contacter un professionnel dès maintenant ou appelez un service d'urgence."
+            summary += "\n\n🚨 URGENT : Si vous êtes en danger immédiat, appelez les services d'urgence locaux." 
         elif danger_level >= 6:
-            summary += "\n\n⚠️ **IMPORTANT**: Vos sentiments semblent sérieux. Une consultation avec un professionnel de santé mentale serait vraiment bénéfique."
+            summary += "\n\n⚠️ Je vous recommande de contacter un professionnel rapidement."
         elif danger_level >= 4:
-            summary += "\n\n💡 Conseil: Envisagez de parler à un psychologue ou thérapeute professionnel. Vous méritez du soutien spécialisé."
+            summary += "\n\n💡 Envisagez de parler à un professionnel ou de consulter des ressources de soutien."
         else:
-            summary += "\n\n✨ Continuez à prendre soin de vous. Vous êtes sur la bonne voie!"
-        
+            summary += "\n\n✨ Continuez les efforts que vous faites aujourd'hui — c'est important." 
+
         return summary
-    
+
     def get_emergency_response_resources(self, country='tunisie'):
-        """Obtient les ressources d'urgence pour le pays"""
         return self.emergency_resources.get(country, {})

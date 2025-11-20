@@ -1,0 +1,152 @@
+{
+  "relationships": {
+    "keywords": ["relation", "couple", "conjoint", "mari", "femme", "petit ami", "copain", "amour", "séparation", "divorce"],
+    "templates": {
+      "tristesse": [
+        "Les difficultés relationnelles touchent profondément. Parlez-moi d'un moment précis où vous vous êtes senti(e) blessé(e).",
+        "Quand la relation manque de soutien, la tristesse s'installe; pouvez-vous me donner un exemple concret?"
+      ],
+      "anxiete": [
+        "Les tensions dans le couple peuvent générer beaucoup d'anticipation; quels signes physiques ressentez-vous quand cela survient?",
+        "Si l'on décrit la situation en une phrase, que se passe-t-il généralement avant que l'anxiété n'apparaisse?"
+      ],
+      "colere": [
+        "Les conflits répétés sont épuisants; quelle est la chose qui vous met le plus en colère dans cette relation?",
+        "Parfois, clarifier une limite donne un soulagement immédiat; quelle limite souhaitez-vous poser?"
+      ],
+      "peur": [
+        "La peur liée aux relations peut venir d'un manque de sécurité; qu'est-ce qui vous ferait vous sentir plus en sécurité?",
+        "Y a-t-il des comportements précis qui déclenchent cette peur? Décrivez-en un exemple." 
+      ],
+      "neutre": [
+        "Parlons de ce qui se passe dans votre relation et de ce que vous aimeriez changer en priorité.",
+        "Si vous deviez nommer un petit pas concret à faire cette semaine, lequel serait-ce?"
+      ]
+    }
+  },
+  "travail": {
+    "keywords": ["travail", "emploi", "boss", "patron", "collègue", "carrière", "entretien", "bureau"],
+    "templates": {
+      "tristesse": [
+        "Le travail peut être une source de sens et de perte; qu'est-ce qui, au travail, vous pèse actuellement?",
+        "Parfois, identifier une petite tâche réaliste redonne un sentiment d'accomplissement; quelle tâche pourriez-vous choisir?"
+      ],
+      "anxiete": [
+        "Le stress professionnel génère souvent des scénarios catastrophiques; quel est le pire que vous imaginez?",
+        "Définir la prochaine action concrète peut réduire l'anxiété. Quelle serait votre première étape?"
+      ],
+      "colere": [
+        "Ressentir de l'injustice au travail est courant; quelle situation précise illustre cela pour vous?",
+        "Exprimer vos besoins par écrit d'abord aide souvent à clarifier; voulez-vous essayer de formuler une phrase?"
+      ],
+      "peur": [
+        "La peur de l'échec au travail est fréquente; qu'est-ce qui vous rassurerait sur vos compétences?",
+        "Avez-vous déjà survécu à une situation similaire auparavant? Racontez comment vous avez géré."
+      ],
+      "neutre": [
+        "Parlons des priorités au travail et d'une action réaliste pour la semaine.",
+        "Quel petit changement pourrait améliorer votre ressentit au bureau?"
+      ]
+    }
+  },
+  "sante": {
+    "keywords": ["santé", "médical", "médecin", "douleur", "malade", "santé mentale", "sommeil"],
+    "templates": {
+      "tristesse": [
+        "La santé qui vacille affecte profondément l'humeur; comment cela impacte-t-il vos activités quotidiennes?",
+        "Parler d'un symptôme précis peut aider à clarifier l'impact; lequel est le plus présent pour vous?"
+      ],
+      "anxiete": [
+        "L'incertitude sur la santé alimente l'anxiété; quelles informations vous rassureraient le plus?",
+        "Avez-vous des ressources médicales ou des proches qui peuvent vous accompagner pour clarifier la situation?"
+      ],
+      "colere": [
+        "Il est compréhensible d'être en colère face à une situation médicale injuste; quelle action aimeriez-vous entreprendre?",
+        "Parfois, demander un deuxième avis médical peut réduire la frustration; l'avez-vous envisagé?"
+      ],
+      "peur": [
+        "La peur liée à la santé peut être accablante; quel est le pire scénario qui vous traverse l'esprit?",
+        "Construire un plan concret pour les prochains jours peut réduire la peur; que pourrions-nous planifier ensemble?"
+      ],
+      "neutre": [
+        "Si vous avez besoin, notez les symptômes et leur fréquence; cela aidera à structurer les prochains pas.",
+        "Discutons d'une toute petite action médicale ou de bien-être que vous pouvez tester cette semaine."
+      ]
+    }
+  },
+  "isolement": {
+    "keywords": ["seul", "isolement", "solitude", "isolé", "ami", "amis", "social"],
+    "templates": {
+      "tristesse": [
+        "La solitude peut amplifier la tristesse; y a-t-il une personne avec qui vous pourriez partager un petit moment?",
+        "Parfois, un pas minuscule vers le contact (un message, un appel de 5 min) peut alléger le poids; est-ce envisageable?"
+      ],
+      "anxiete": [
+        "L'isolement augmente souvent l'anxiété; quelles petites activités sociales vous semblent tolérables?",
+        "Avez-vous déjà eu une expérience agréable en lien social dont on pourrait s'inspirer?"
+      ],
+      "colere": [
+        "La colère et l'isolement peuvent coexister; ressentez-vous que l'isolement est un choix ou une contrainte?",
+        "Si l'isolement est subi, quelles actions vous sembleraient apaisantes pour reprendre du lien?"
+      ],
+      "peur": [
+        "La peur d'être rejeté(e) empêche parfois de tendre la main; quelle petite démarche vous paraîtrait la moins risquée?",
+        "Préparons ensemble un message court à envoyer si vous souhaitez tester le contact."
+      ],
+      "neutre": [
+        "Quels pas, même très petits, pourriez-vous tenter pour rétablir un lien?",
+        "Que diriez-vous d'identifier une seule personne à qui envoyer un message cette semaine?"
+      ]
+    }
+  },
+  "finances": {
+    "keywords": ["argent", "finance", "paiement", "loyer", "dette", "budget"],
+    "templates": {
+      "tristesse": [
+        "La pression financière est très pesante; quel poste représente la plus grande inquiétude aujourd'hui?",
+        "Lister les dépenses prioritaires peut aider à apaiser en clarifiant ce qui est gérable."
+      ],
+      "anxiete": [
+        "L'anxiété liée à l'argent provoque souvent des pensées rapides; avez-vous déjà essayé de noter vos pensées pour les trier?",
+        "Un petit plan budgétaire, même schématique, réduit souvent la panique; voulez-vous que je vous guide?"
+      ],
+      "colere": [
+        "La colère face à l'injustice financière est compréhensible; quelle solution immédiate souhaiteriez-vous explorer?",
+        "Parfois, chercher une aide sociale ou une médiation peut ouvrir des options; souhaitez-vous en discuter?"
+      ],
+      "peur": [
+        "La peur de perdre la stabilité est intense; quel soutien concret pourrait la réduire maintenant?",
+        "Mettons en place un petit plan pour les 7 prochains jours afin de stabiliser la situation." 
+      ],
+      "neutre": [
+        "Commençons par noter les trois dépenses les plus importantes et une action possible pour chacune.",
+        "Un pas simple: vérifier une aide ou une ressource locale pour alléger la pression financière."
+      ]
+     }
+   },
+   "sommeil": {
+     "keywords": ["sommeil", "dormir", "insomnie", "réveil", "nuit"],
+     "templates": {
+       "tristesse": [
+         "Le sommeil perturbé amplifie les émotions; décrivez votre rythme de sommeil récent pour qu'on puisse le comprendre.",
+         "Une routine apaisante avant le coucher peut faire une grande différence; que faites-vous actuellement avant de dormir?"
+       ],
+       "anxiete": [
+         "L'anxiété nocturne est fréquente; avez-vous essayé de noter vos pensées avant le coucher pour les sortir de la tête?",
+         "Une courte routine de respiration avant de dormir peut réduire l'agitation; voulez-vous un exemple?"
+       ],
+       "colere": [
+         "La colère peut nuire au repos; y a-t-il des pensées répétitives qui vous empêchent de vous détendre la nuit?",
+        "Préparer une liste d'actions pour le lendemain peut parfois apaiser l'esprit."
+       ],
+       "peur": [
+         "La peur la nuit est difficile; établir des signaux de sécurité ou un rituel peut aider. Que pourriez-vous mettre en place?",
+         "Compter ses respirations ou un exercice simple d'ancrage peut diminuer la peur au coucher."
+       ],
+       "neutre": [
+         "Essayez de garder des heures régulières pour vous coucher et vous lever; la régularité aide beaucoup.",
+         "Évitez les écrans 30 minutes avant le coucher et testez une courte routine d'apaisement."
+       ]
+     }
+   }
+ }
