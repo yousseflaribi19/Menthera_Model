@@ -9,6 +9,8 @@ from flask_cors import CORS
 from datetime import datetime
 import os
 import sys
+import tempfile
+import traceback
 
 # Ajouter chemin racine
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -81,11 +83,22 @@ def create_app():
         user_id = request.form.get('user_id', 1)
         session_id = request.form.get('session_id', None)
         
-        # Sauvegarder temporairement
-        temp_path = f'temp_{user_id}_{datetime.now().timestamp()}.wav'
-        audio_file.save(temp_path)
-        
+        # Sauvegarder temporairement avec une approche plus robuste
+        temp_fd, temp_path = tempfile.mkstemp(suffix='.wav')
         try:
+            # Sauvegarder le fichier
+            audio_file.save(temp_path)
+            
+            # Fermer le file descriptor
+            os.close(temp_fd)
+            
+            # Vérifier que le fichier existe et n'est pas vide
+            if not os.path.exists(temp_path):
+                return jsonify({'error': 'Échec de sauvegarde du fichier audio'}), 500
+            
+            if os.path.getsize(temp_path) == 0:
+                return jsonify({'error': 'Fichier audio vide'}), 400
+            
             # 1. ANALYSE ÉMOTION
             emotion_result = emotion_service.analyze_emotion(temp_path)
             emotion = emotion_result['emotion']
@@ -104,11 +117,16 @@ def create_app():
             
             # 4. User
             user = User.query.get(user_id)
+            email = f'user_{user_id}@menthera.app'
             if not user:
-                user = User(email=f'user_{user_id}@menthera.app', name=f'User {user_id}')
-                db.session.add(user)
-                db.session.commit()
-            
+                # Vérifier si un utilisateur avec cet email existe déjà
+                user_by_email = User.query.filter_by(email=email).first()
+                if user_by_email:
+                    user = user_by_email
+                else:
+                    user = User(email=email, name=f'User {user_id}')
+                    db.session.add(user)
+                    db.session.commit()
             is_premium = user.is_premium
             limits = user.get_plan_limits()
             
@@ -203,8 +221,13 @@ def create_app():
             })
         
         except Exception as e:
+            # Nettoyer le fichier temporaire en cas d'erreur
             if os.path.exists(temp_path):
-                os.remove(temp_path)
+                print(traceback.format_exc())
+                try:
+                    os.remove(temp_path)
+                except:
+                    pass
             return jsonify({'error': str(e)}), 500
     
     @app.route('/api/chat/end-session', methods=['POST'])
